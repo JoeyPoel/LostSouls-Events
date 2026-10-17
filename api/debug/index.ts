@@ -1,7 +1,9 @@
 import type { IncomingMessage, ServerResponse } from 'http';
+import fs from 'node:fs';
+import path from 'node:path';
 
 /**
- * Diagnostic serverless function to reveal exact production environment issues.
+ * Diagnostic serverless function to reveal exact production filesystem and imports.
  *
  * @param {IncomingMessage} _req - Inbound request.
  * @param {ServerResponse} res - Outbound response.
@@ -10,39 +12,38 @@ export default async function handler(_req: IncomingMessage, res: ServerResponse
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'no-store, max-age=0');
 
+  const filesInTask: Record<string, string[]> = {};
+  const listDirSafe = (dir: string) => {
+    try {
+      return fs.readdirSync(dir);
+    } catch (e: any) {
+      return [`ERROR: ${e.message}`];
+    }
+  };
+
+  filesInTask['/var/task'] = listDirSafe('/var/task');
+  filesInTask['/var/task/api'] = listDirSafe('/var/task/api');
+  filesInTask['/var/task/api/lib'] = listDirSafe('/var/task/api/lib');
+
   const diagnostics: Record<string, unknown> = {
     timestamp: new Date().toISOString(),
     nodeVersion: process.version,
-    env: {
-      hasDatabaseUrl: Boolean(process.env.DATABASE_URL),
-      hasResendApiKey: Boolean(process.env.RESEND_API_KEY),
-      hasResendFromEmail: Boolean(process.env.RESEND_FROM_EMAIL),
-      hasAdminEmail: Boolean(process.env.ADMIN_NOTIFICATION_EMAIL),
-    },
+    filesInTask,
   };
 
   try {
-    const prismaModule = await import('../lib/prisma');
-    diagnostics.prismaImport = 'success';
+    const prismaModule = await import('../lib/prisma.js');
+    diagnostics.prismaJsImport = 'success';
     diagnostics.getPrismaClientResult = Boolean(prismaModule.getPrismaClient());
   } catch (prismaErr: any) {
-    diagnostics.prismaImport = 'error';
-    diagnostics.prismaError = {
-      message: prismaErr?.message,
-      stack: prismaErr?.stack,
-    };
+    diagnostics.prismaJsImport = 'error: ' + prismaErr.message;
   }
 
   try {
-    const mailModule = await import('../lib/mail');
-    diagnostics.mailImport = 'success';
-    diagnostics.hasSendFunction = typeof mailModule.sendWaitlistConfirmationEmail === 'function';
+    const mailModule = await import('../lib/mail.js');
+    diagnostics.mailJsImport = 'success';
   } catch (mailErr: any) {
-    diagnostics.mailImport = 'error';
-    diagnostics.mailError = {
-      message: mailErr?.message,
-      stack: mailErr?.stack,
-    };
+    diagnostics.mailJsImport = 'error: ' + mailErr.message;
   }
 
   res.statusCode = 200;
