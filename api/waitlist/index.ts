@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { prisma } from '../../src/lib/prisma';
-import { sendWaitlistConfirmationEmail, sendAdminWaitlistNotification } from '../../src/lib/mail';
+import { prisma } from '../lib/prisma';
+import { sendWaitlistConfirmationEmail, sendAdminWaitlistNotification } from '../lib/mail';
 
 export interface VercelRequest extends IncomingMessage {
   query?: Record<string, string | string[]>;

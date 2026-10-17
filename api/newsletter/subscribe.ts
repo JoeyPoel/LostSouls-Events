@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '../events/index';
-import { prisma } from '../../src/lib/prisma';
+import { prisma } from '../lib/prisma';
 
 /**
  * Vercel Serverless Function: POST /api/newsletter/subscribe

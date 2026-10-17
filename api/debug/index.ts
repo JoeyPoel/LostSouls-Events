@@ -22,7 +22,7 @@ export default async function handler(_req: IncomingMessage, res: ServerResponse
   };
 
   try {
-    const prismaModule = await import('../../src/lib/prisma');
+    const prismaModule = await import('../lib/prisma');
     diagnostics.prismaImport = 'success';
     diagnostics.getPrismaClientResult = Boolean(prismaModule.getPrismaClient());
   } catch (prismaErr: any) {
@@ -34,7 +34,7 @@ export default async function handler(_req: IncomingMessage, res: ServerResponse
   }
 
   try {
-    const mailModule = await import('../../src/lib/mail');
+    const mailModule = await import('../lib/mail');
     diagnostics.mailImport = 'success';
     diagnostics.hasSendFunction = typeof mailModule.sendWaitlistConfirmationEmail === 'function';
   } catch (mailErr: any) {
