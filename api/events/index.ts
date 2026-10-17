@@ -46,20 +46,42 @@ const FALLBACK_EVENTS = [
 ];
 
 /**
+ * Sends a JSON response compatible with both Vercel helper methods and standard Node.js ServerResponse.
+ *
+ * @param {VercelResponse} res - Outbound server response.
+ * @param {number} statusCode - HTTP status code.
+ * @param {unknown} data - Payload to serialize.
+ */
+function sendJson(res: VercelResponse, statusCode: number, data: unknown): void {
+  const statusFn = (res as any).status;
+  const jsonFn = (res as any).json;
+  if (typeof statusFn === 'function' && typeof jsonFn === 'function') {
+    statusFn.call(res, statusCode);
+    jsonFn.call(res, data);
+    return;
+  }
+  res.statusCode = statusCode;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(data));
+}
+
+/**
  * Vercel Serverless Function: GET /api/events
  * Returns active published editions with ordered lineups and ticket tier matrix.
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method && req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-
-  res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
-  res.setHeader('Content-Type', 'application/json');
-
   try {
+    if (req.method && req.method !== 'GET') {
+      sendJson(res, 405, { error: 'Method Not Allowed' });
+      return;
+    }
+
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+    res.setHeader('Content-Type', 'application/json');
+
     if (!process.env.DATABASE_URL) {
-      return res.status(200).json({ events: FALLBACK_EVENTS });
+      sendJson(res, 200, { events: FALLBACK_EVENTS });
+      return;
     }
 
     const events = await prisma.event.findMany({
@@ -76,12 +98,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     if (!events || events.length === 0) {
-      return res.status(200).json({ events: FALLBACK_EVENTS });
+      sendJson(res, 200, { events: FALLBACK_EVENTS });
+      return;
     }
 
-    return res.status(200).json({ events });
+    sendJson(res, 200, { events });
   } catch (err: unknown) {
     console.error('[API /api/events] Database query failed, using fallback data:', err);
-    return res.status(200).json({ events: FALLBACK_EVENTS });
+    sendJson(res, 200, { events: FALLBACK_EVENTS });
   }
 }
