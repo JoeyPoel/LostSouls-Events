@@ -17,92 +17,31 @@ export interface WaitlistEmailInput {
  * @param {string} email - Recipient email address.
  * @returns {string} Fully inline-styled HTML string.
  */
-export function generateWaitlistConfirmationHtml(email: string): string {
+export function generateWaitlistConfirmationHtml(_email?: string): string {
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LØST SØULS // WAITING LIST VERIFIED</title>
+  <title>LØST SØULS</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #000000; color: #ffffff; font-family: 'Space Mono', 'Courier New', Courier, monospace; -webkit-font-smoothing: antialiased;">
-  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #000000; min-height: 100vh; padding: 40px 16px;">
+  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #000000; min-height: 100vh; padding: 60px 16px;">
     <tr>
-      <td align="center">
+      <td align="center" valign="middle">
         <!-- Main Card Container -->
-        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #020611; border: 1px solid #0044FF; box-shadow: 0 0 35px rgba(0, 68, 255, 0.25); text-align: left;">
-          
-          <!-- Top Telemetry Ribbon -->
+        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 540px; background-color: #020611; border: 1px solid #0044FF; box-shadow: 0 0 35px rgba(0, 68, 255, 0.25); text-align: center;">
           <tr>
-            <td style="padding: 12px 24px; border-bottom: 1px solid rgba(0, 102, 255, 0.25); background-color: #050e20; font-size: 11px; letter-spacing: 0.25em; color: #00E5FF; text-transform: uppercase;">
-              <span style="display: inline-block; width: 6px; height: 6px; background-color: #00E5FF; margin-right: 8px; vertical-align: middle;"></span>
-              SECURE DISPATCH // LEVEL 01 ACCESS
-            </td>
-          </tr>
-
-          <!-- Hero Headline -->
-          <tr>
-            <td style="padding: 40px 32px 20px 32px;">
-              <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 44px; font-weight: 900; letter-spacing: 0.18em; color: #ffffff; text-transform: uppercase;">
+            <td style="padding: 64px 32px; text-align: center;">
+              <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 900; letter-spacing: 0.18em; color: #ffffff; text-transform: uppercase;">
                 LØST SØULS
               </h1>
-              <p style="margin: 8px 0 0 0; font-size: 13px; letter-spacing: 0.35em; color: #00E5FF; text-transform: uppercase;">
+              <p style="margin: 16px 0 0 0; font-family: 'Space Mono', 'Courier New', Courier, monospace; font-size: 13px; letter-spacing: 0.35em; color: #00E5FF; text-transform: uppercase;">
                 SOMETHING BIG IS COMING...
               </p>
             </td>
           </tr>
-
-          <!-- Status Indicator Pill -->
-          <tr>
-            <td style="padding: 0 32px 24px 32px;">
-              <div style="display: inline-block; padding: 6px 14px; border: 1px solid #00E5FF; background-color: rgba(0, 229, 255, 0.08); font-size: 11px; font-weight: bold; letter-spacing: 0.2em; color: #E0F7FF;">
-                [ WAITING LIST CONFIRMED // ALLOCATION RESERVED ]
-              </div>
-            </td>
-          </tr>
-
-          <!-- Message Body -->
-          <tr>
-            <td style="padding: 0 32px 32px 32px; font-size: 14px; line-height: 1.8; color: #cbd5e1;">
-              <p style="margin: 0 0 18px 0;">
-                Transmission target: <strong style="color: #ffffff;">${email}</strong>
-              </p>
-              <p style="margin: 0 0 18px 0;">
-                Your address has been committed to the underground ledger. You are now positioned at the forefront of the upcoming reveal.
-              </p>
-              <p style="margin: 0 0 18px 0;">
-                When the next chapter breaks into the void, your priority reservation token and private ticket batch access will be dispatched directly to your inbox before the general public.
-              </p>
-
-              <!-- Industrial Ledger Box -->
-              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 24px 0; border: 1px solid rgba(0, 102, 255, 0.3); background-color: #030712;">
-                <tr>
-                  <td style="padding: 14px 18px; font-size: 12px; color: #64748b; line-height: 1.7; letter-spacing: 0.08em;">
-                    <div style="color: #00E5FF; font-weight: bold; margin-bottom: 6px;">■ PROTOCOL PROTO-01 // ESSENTIALS</div>
-                    <div>• Strictly 18+ entry — Physical government ID mandatory.</div>
-                    <div>• Zero camera flash policy — Total dancefloor immersion.</div>
-                    <div>• 140–165 BPM industrial pressure & hybrid live sonic sets.</div>
-                  </td>
-                </tr>
-              </table>
-
-              <p style="margin: 0; color: #94a3b8; font-size: 12px; letter-spacing: 0.15em;">
-                Stand by for temporal coordinates and line-up transmission.
-              </p>
-            </td>
-          </tr>
-
-          <!-- Bottom Telemetry Footer -->
-          <tr>
-            <td style="padding: 24px 32px; border-top: 1px solid rgba(0, 102, 255, 0.25); background-color: #000000; font-size: 11px; color: #475569; letter-spacing: 0.15em; line-height: 1.6;">
-              <div style="color: #64748b; font-weight: bold; margin-bottom: 4px;">
-                LOST SOULS // UNDERGROUND TECHNO COLLECTIVE
-              </div>
-              <div>ROTTERDAM • AMSTERDAM // ALL RIGHTS RESERVED</div>
-            </td>
-          </tr>
-
         </table>
       </td>
     </tr>
@@ -138,7 +77,7 @@ export async function sendWaitlistConfirmationEmail(input: WaitlistEmailInput): 
       body: JSON.stringify({
         from: fromEmail,
         to: input.email,
-        subject: 'LØST SØULS // Waiting List Confirmed — Something Big Is Coming',
+        subject: 'LØST SØULS // SOMETHING BIG IS COMING...',
         html: htmlContent,
       }),
     });
