@@ -13,7 +13,7 @@ import { WaitlistForm } from '@/components/teaser/WaitlistForm';
  */
 export const App: React.FC = () => {
   return (
-    <main className="min-h-screen min-h-[100dvh] w-full bg-ls-void-pure text-ls-mono-pureWhite flex flex-col items-center justify-center relative overflow-hidden select-none px-6">
+    <main className="min-h-screen h-screen w-full bg-ls-void-pure text-ls-mono-pureWhite flex flex-col items-center justify-center relative overflow-hidden select-none px-6">
       {/* Heavy Warehouse Analog Noise Overlay */}
       <Noise />
 
