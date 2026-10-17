@@ -30,10 +30,9 @@ export function generateWaitlistConfirmationHtml(_email?: string): string {
   <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #000000; min-height: 100vh; padding: 60px 16px;">
     <tr>
       <td align="center" valign="middle">
-        <!-- Main Card Container -->
-        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 520px; background-color: #020611; border: 1px solid #0044FF; box-shadow: 0 0 40px rgba(0, 68, 255, 0.3); text-align: center; border-radius: 8px;">
+        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 520px; background-color: #000000; text-align: center;">
           <tr>
-            <td style="padding: 64px 32px; text-align: center;">
+            <td style="padding: 48px 24px; text-align: center;">
               <!-- Brand Title -->
               <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 900; letter-spacing: 0.18em; color: #ffffff; text-transform: uppercase;">
                 LØST SØULS
