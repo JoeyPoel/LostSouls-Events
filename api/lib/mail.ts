@@ -33,24 +33,14 @@ export function generateWaitlistConfirmationHtml(_email?: string): string {
         <!-- Main Card Container -->
         <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 520px; background-color: #020611; border: 1px solid #0044FF; box-shadow: 0 0 40px rgba(0, 68, 255, 0.3); text-align: center; border-radius: 8px;">
           <tr>
-            <td style="padding: 56px 32px; text-align: center;">
-              <!-- Lost Souls Avatar -->
-              <div style="margin: 0 auto; text-align: center;">
-                <img
-                  src="https://lostsouls-events.com/lost-souls-avatar.png"
-                  alt="LØST SØULS"
-                  width="180"
-                  style="display: block; margin: 0 auto; border-radius: 12px; width: 180px; max-width: 100%; height: auto; border: 1px solid rgba(0, 119, 255, 0.4); box-shadow: 0 0 30px rgba(0, 68, 255, 0.35);"
-                />
-              </div>
-
+            <td style="padding: 64px 32px; text-align: center;">
               <!-- Brand Title -->
-              <h1 style="margin: 28px 0 0 0; font-family: Georgia, 'Times New Roman', serif; font-size: 38px; font-weight: 900; letter-spacing: 0.18em; color: #ffffff; text-transform: uppercase;">
+              <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 900; letter-spacing: 0.18em; color: #ffffff; text-transform: uppercase;">
                 LØST SØULS
               </h1>
 
               <!-- Tagline -->
-              <p style="margin: 14px 0 0 0; font-family: 'Space Mono', 'Courier New', Courier, monospace; font-size: 13px; letter-spacing: 0.35em; color: #00E5FF; text-transform: uppercase;">
+              <p style="margin: 16px 0 0 0; font-family: 'Space Mono', 'Courier New', Courier, monospace; font-size: 13px; letter-spacing: 0.35em; color: #00E5FF; text-transform: uppercase;">
                 SOMETHING BIG IS COMING...
               </p>
             </td>
