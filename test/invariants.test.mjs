@@ -47,3 +47,18 @@ test('Zero Hardcoded Hex in src/components', () => {
 
   scanDir(componentsDir);
 });
+
+test('Prisma Resilience: Module loads safely when DATABASE_URL is unset', async () => {
+  const originalDbUrl = process.env.DATABASE_URL;
+  try {
+    process.env.DATABASE_URL = '';
+    const prismaModule = await import('../src/lib/prisma.ts');
+    assert.ok(prismaModule.prisma, 'Prisma proxy should be exported');
+    assert.equal(prismaModule.getPrismaClient(), null, 'getPrismaClient should return null when DATABASE_URL is unset');
+
+    const waitlistModule = await import('../api/waitlist/index.ts');
+    assert.equal(typeof waitlistModule.default, 'function', 'Waitlist handler should be a callable function');
+  } finally {
+    process.env.DATABASE_URL = originalDbUrl;
+  }
+});
