@@ -31,6 +31,7 @@ export const STRINGS = {
     placeholder: 'join the waiting list',
     activePlaceholder: 'enter your email...',
     success: 'check your email',
+    successTitle: 'ACCESS CONFIRMED',
     errorInvalid: 'invalid email address',
     errorServer: 'transmission failed. retry.',
   },

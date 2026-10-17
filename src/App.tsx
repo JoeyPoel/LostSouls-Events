@@ -2,7 +2,6 @@ import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import { Noise } from '@/components/common/Noise';
 import { WaitlistForm } from '@/components/teaser/WaitlistForm';
-import { FallingTitle } from '@/components/teaser/FallingTitle';
 
 /**
  * App Component
@@ -34,8 +33,8 @@ export const App: React.FC = () => {
 
       {/* Mysterious Monolithic Centerpiece */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-6xl mx-auto w-full">
-        <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-mono-pureWhite uppercase whitespace-nowrap transition-all duration-700">
-          <FallingTitle text={STRINGS.teaser.brandTitle} durationMs={1500} />
+        <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-mono-pureWhite uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
+          {STRINGS.teaser.brandTitle}
         </h1>
 
         <p className="mt-6 sm:mt-8 font-mono text-xs sm:text-sm md:text-base tracking-[0.35em] sm:tracking-[0.55em] text-ls-mono-silver uppercase opacity-85 animate-pulse">
