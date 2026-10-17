@@ -1,0 +1,130 @@
+@import './animations.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--ls-color-void-pure);
+    color: var(--ls-color-mono-pureWhite);
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--ls-color-void-pure);
+    color: var(--ls-color-mono-pureWhite);
+    overflow-x: hidden;
+    font-family: 'Space Mono', 'JetBrains Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--ls-color-mono-pureWhite);
+    color: var(--ls-color-void-pure);
+  }
+
+  /* Custom Industrial Chrome Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--ls-color-void-pure);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--ls-color-mono-dark);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ls-color-blue-laserCyan);
+  }
+}
+
+/* Editorial Heavy Serif (Inferi Style) */
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.font-ritual {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+}
+
+/* Blue Laser Glow Utilities */
+.laser-glow-text {
+  text-shadow: 0 0 14px var(--ls-color-blue-laserCyan), 0 0 32px var(--ls-color-blue-cobalt);
+}
+
+.laser-glow-box {
+  box-shadow: var(--ls-glow-laser-intense);
+}
+
+.laser-subtle-box {
+  box-shadow: var(--ls-glow-laser-subtle);
+}
+
+.hairline-border {
+  border: var(--ls-border-subtle);
+}
+
+.laser-border {
+  border: var(--ls-border-cyan-laser);
+}
+
+.active-laser-border {
+  border: var(--ls-border-active);
+}
+
+.card-blue-gradient {
+  background: radial-gradient(circle at top, rgba(0, 102, 255, 0.18) 0%, var(--ls-color-void-abyss) 75%);
+}
+
+/* CRT Scanline Overlay */
+.scanlines-pattern {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.4) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.01),
+    rgba(255, 255, 255, 0.02)
+  );
+  background-size: 100% 3px, 6px 100%;
+}
+
+/* Cyber Sigilism Angular Cut-Paths */
+.cyber-cut {
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.cyber-cut-sm {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.cyber-notch {
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+/* Liquid Mercury Chrome Typography */
+.liquid-chrome-text {
+  background: linear-gradient(
+    180deg,
+    var(--ls-color-mono-pureWhite) 0%,
+    var(--ls-color-blue-laserCyan) 20%,
+    var(--ls-color-blue-electric) 45%,
+    var(--ls-color-mono-pureWhite) 70%,
+    var(--ls-color-mono-muted) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

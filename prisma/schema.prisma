@@ -1,0 +1,97 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum TicketStatus {
+  AVAILABLE
+  RESERVED
+  SOLD_OUT
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+model Event {
+  id          String       @id @default(uuid())
+  slug        String       @unique
+  title       String
+  chapter     String
+  venue       String
+  city        String
+  eventDate   DateTime
+  doorsOpen   String
+  doorsClose  String
+  heroImage   String
+  isPublished Boolean      @default(true)
+  ticketTiers TicketTier[]
+  artists     Artist[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Artist {
+  id           String   @id @default(uuid())
+  name         String
+  performance  String   // e.g. "Hybrid Live", "B2B", "Special Closing"
+  orderIndex   Int
+  stage        String   // e.g. "Main Stage", "Dark Tunnel"
+  eventId      String
+  event        Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model TicketTier {
+  id           String       @id @default(uuid())
+  name         String       // e.g. "Community Batch", "Early Soul", "Final Soul"
+  priceCents   Int
+  serviceFee   Int
+  capacity     Int
+  soldCount    Int          @default(0)
+  status       TicketStatus @default(AVAILABLE)
+  orderIndex   Int
+  eventId      String
+  event        Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  orderItems   OrderItem[]
+}
+
+model Order {
+  id           String       @id @default(uuid())
+  orderNumber  String       @unique
+  email        String
+  totalCents   Int
+  status       OrderStatus  @default(PENDING)
+  items        OrderItem[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model OrderItem {
+  id           String      @id @default(uuid())
+  quantity     Int
+  priceCents   Int
+  orderId      String
+  order        Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  tierId       String
+  tier         TicketTier  @relation(fields: [tierId], references: [id])
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  source       String   @default("website_footer")
+  createdAt    DateTime @default(now())
+}
+
+model WaitlistSubscriber {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  source       String   @default("teaser_waitlist")
+  createdAt    DateTime @default(now())
+}

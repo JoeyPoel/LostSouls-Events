@@ -1,0 +1,174 @@
+/**
+ * Lost Souls Keyframe Animations
+ * Strictly driven by theme CSS variables - zero hardcoded color values.
+ */
+
+@keyframes laserSweep {
+  0% {
+    transform: rotate(-18deg) translateY(-2%);
+    opacity: 0.35;
+  }
+  50% {
+    transform: rotate(18deg) translateY(2%);
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate(-18deg) translateY(-2%);
+    opacity: 0.35;
+  }
+}
+
+@keyframes laserSweepReverse {
+  0% {
+    transform: rotate(22deg) translateY(2%);
+    opacity: 0.25;
+  }
+  50% {
+    transform: rotate(-22deg) translateY(-2%);
+    opacity: 0.75;
+  }
+  100% {
+    transform: rotate(22deg) translateY(2%);
+    opacity: 0.25;
+  }
+}
+
+@keyframes laserPulse {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 10px var(--ls-color-blue-electric));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 25px var(--ls-color-blue-laserCyan));
+  }
+}
+
+@keyframes strobeFlash {
+  0%, 94%, 98%, 100% {
+    opacity: 0;
+  }
+  95%, 97% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes hudBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes fogDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-3%, 4%) scale(1.08);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes sigilSpinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sigilPulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 10px var(--ls-color-blue-cobalt));
+  }
+  50% {
+    opacity: 0.75;
+    filter: drop-shadow(0 0 25px var(--ls-color-blue-laserCyan)) drop-shadow(0 0 45px var(--ls-color-blue-electric));
+  }
+}
+
+@keyframes thornJitter {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1px, 1px);
+  }
+  75% {
+    transform: translate(1px, -1px);
+  }
+}
+
+.animate-sigil-spin {
+  animation: sigilSpinSlow 90s linear infinite;
+}
+
+.animate-sigil-pulse {
+  animation: sigilPulseGlow 6s ease-in-out infinite;
+}
+
+.animate-thorn-jitter {
+  animation: thornJitter 0.3s steps(2, start) infinite;
+}
+
+@keyframes kickPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px var(--ls-color-blue-cobalt));
+  }
+  12% {
+    transform: scale(1.018);
+    filter: drop-shadow(0 0 35px var(--ls-color-blue-laserCyan)) drop-shadow(0 0 70px var(--ls-color-blue-cobalt));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px var(--ls-color-blue-cobalt));
+  }
+}
+
+.animate-kick-pulse {
+  animation: kickPulse 0.3896s cubic-bezier(0.1, 0.9, 0.2, 1) infinite;
+}
+
+.animate-laser-sweep {
+  animation: laserSweep 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-laser-sweep-reverse {
+  animation: laserSweepReverse 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-laser-pulse {
+  animation: laserPulse 4s ease-in-out infinite;
+}
+
+.animate-strobe {
+  animation: strobeFlash 9s infinite;
+}
+
+.animate-hud-blink {
+  animation: hudBlink 1.8s ease-in-out infinite;
+}
+
+.animate-fog-drift {
+  animation: fogDrift 20s ease-in-out infinite;
+}
