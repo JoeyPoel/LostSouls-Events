@@ -1,5 +1,5 @@
-import type { VercelRequest, VercelResponse } from '../events/index';
-import { prisma } from '../lib/prisma';
+import type { VercelRequest, VercelResponse } from '../events/index.js';
+import { prisma } from '../lib/prisma.js';
 
 /**
  * Vercel Serverless Function: GET /api/tickets/availability

@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 
 export interface VercelRequest extends IncomingMessage {
   query: Record<string, string | string[]>;
