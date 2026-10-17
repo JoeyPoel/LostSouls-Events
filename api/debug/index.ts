@@ -1,6 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
 import fs from 'node:fs';
-import path from 'node:path';
 
 /**
  * Diagnostic serverless function to reveal exact production filesystem and imports.
@@ -36,14 +35,15 @@ export default async function handler(_req: IncomingMessage, res: ServerResponse
     diagnostics.prismaJsImport = 'success';
     diagnostics.getPrismaClientResult = Boolean(prismaModule.getPrismaClient());
   } catch (prismaErr: any) {
-    diagnostics.prismaJsImport = 'error: ' + prismaErr.message;
+    diagnostics.prismaJsImport = 'error: ' + (prismaErr?.message || String(prismaErr));
   }
 
   try {
     const mailModule = await import('../lib/mail.js');
     diagnostics.mailJsImport = 'success';
+    diagnostics.hasMailSend = typeof mailModule.sendWaitlistConfirmationEmail === 'function';
   } catch (mailErr: any) {
-    diagnostics.mailJsImport = 'error: ' + mailErr.message;
+    diagnostics.mailJsImport = 'error: ' + (mailErr?.message || String(mailErr));
   }
 
   res.statusCode = 200;
