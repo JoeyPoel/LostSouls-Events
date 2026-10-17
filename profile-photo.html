@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LØST SØULS — Profile Avatar</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', Georgia, serif;
+      overflow: hidden;
+    }
+
+    /* Fixed square profile canvas (1080x1080 virtual ratio) */
+    .avatar-canvas {
+      position: relative;
+      width: min(90vw, 90vh, 700px);
+      height: min(90vw, 90vh, 700px);
+      background-color: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Deep Subterranean Laser Ambience */
+    .ambient-glow {
+      position: absolute;
+      width: 85%;
+      height: 85%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 68, 255, 0.35) 0%, rgba(0, 229, 255, 0.12) 35%, rgba(2, 6, 17, 0.6) 65%, transparent 75%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Subtle Film Grain Noise */
+    .grain-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Stacked Monolithic Text with Signature Laser Glow */
+    .title-stack {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: clamp(4.5rem, 13vw, 8.5rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffffff;
+      /* Signature Lost Souls Volumetric Laser Shadow */
+      text-shadow: 
+        0 0 10px rgba(0, 229, 255, 0.9),
+        0 0 22px rgba(0, 229, 255, 0.75),
+        0 0 45px rgba(0, 68, 255, 0.65),
+        0 0 85px rgba(0, 68, 255, 0.45);
+    }
+
+    .title-stack span {
+      display: block;
+    }
+
+    /* Floating Action & Telemetry Bar */
+    .controls-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(3, 7, 18, 0.75);
+      border: 1px solid rgba(0, 119, 255, 0.3);
+      backdrop-filter: blur(12px);
+      padding: 10px 20px;
+      border-radius: 9999px;
+      z-index: 100;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 119, 255, 0.15);
+    }
+
+    .telemetry-tag {
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .telemetry-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00e5ff;
+      box-shadow: 0 0 8px #00e5ff;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .btn-action {
+      background: #0044ff;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 15px rgba(0, 68, 255, 0.4);
+    }
+
+    .btn-action:hover {
+      background: #00e5ff;
+      color: #000000;
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="avatar-canvas">
+    <div class="ambient-glow"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="title-stack">
+      <span>LØST</span>
+      <span>SØULS</span>
+    </div>
+  </div>
+
+  <div class="controls-bar">
+    <div class="telemetry-tag">
+      <span class="telemetry-dot"></span>
+      <span>1080×1080 AVATAR</span>
+    </div>
+    <a href="/avatar.png" download="lost-souls-avatar.png" class="btn-action">
+      ⬇ Download PNG
+    </a>
+    <a href="/" class="btn-secondary">
+      ← Return to Teaser
+    </a>
+  </div>
+</body>
+</html>
