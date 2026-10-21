@@ -106,7 +106,7 @@ export const WaitlistForm: React.FC = () => {
               required
             />
 
-            {/* Subtle cyber targeting reticle icon revealed only when typing */}
+            {/* Clean arrow submit trigger revealed only when typing */}
             <div
               className={`absolute right-0 transition-all duration-500 transform ${
                 hasContent
@@ -117,29 +117,24 @@ export const WaitlistForm: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || !hasContent}
-                aria-label="Transmit email"
-                title="Transmit"
-                className="p-1 text-ls-mono-pureWhite hover:text-ls-mono-pureWhite focus:text-ls-mono-pureWhite transition-all duration-300 focus:outline-none group hover:drop-shadow-[0_0_14px_var(--ls-color-blue-laserCyan)] hover:drop-shadow-[0_0_32px_var(--ls-color-blue-cobalt)] focus:drop-shadow-[0_0_14px_var(--ls-color-blue-laserCyan)]"
+                aria-label="Submit email"
+                title="Submit"
+                className="p-1 text-ls-mono-pureWhite hover:text-ls-blue-laserCyan transition-all duration-300 focus:outline-none group drop-shadow-[0_0_10px_var(--ls-color-blue-laserCyan)] cursor-pointer"
               >
                 {loading ? (
                   <span className="inline-block w-3 h-3 border border-ls-mono-pureWhite border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <svg
-                    className="w-3.5 h-3.5 transition-transform duration-500 group-hover:rotate-90 group-hover:scale-110"
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth={1.5}
+                    strokeWidth={1.75}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    {/* Outer crosshair radar ring */}
-                    <circle cx="12" cy="12" r="5" strokeDasharray="2 2" opacity={0.8} />
-                    {/* Cardinal laser reticle hairlines */}
-                    <line x1="12" y1="2" x2="12" y2="5" />
-                    <line x1="12" y1="19" x2="12" y2="22" />
-                    <line x1="2" y1="12" x2="5" y2="12" />
-                    <line x1="19" y1="12" x2="22" y2="12" />
-                    {/* Center resonance point */}
-                    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
                   </svg>
                 )}
               </button>

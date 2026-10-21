@@ -80,9 +80,10 @@ export const GallerySection: React.FC = () => {
   return (
     <section id="gallery" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 pb-6 border-b border-ls-mono-hairline">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
         <div>
           <div className="flex items-center gap-2 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan" />
             <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
               {STRINGS.gallery.preTitle}
             </span>
@@ -93,7 +94,7 @@ export const GallerySection: React.FC = () => {
         </div>
 
         <div className="font-mono text-xs tracking-widest text-ls-blue-laserCyan uppercase">
-          // @LOSTSOULS.EVENTS
+          @LOSTSOULS.EVENTS
         </div>
       </div>
 
@@ -103,17 +104,17 @@ export const GallerySection: React.FC = () => {
           <div
             key={post.id}
             onClick={() => setActivePost(post)}
-            className="group cursor-pointer bg-ls-void-abyss border border-ls-blue-electric/30 hover:border-ls-blue-laserCyan cyber-cut transition-all duration-300 relative overflow-hidden shadow-laser-subtle"
+            className="group cursor-pointer bg-ls-void-abyss/60 border border-ls-mono-hairline/60 hover:border-ls-blue-laserCyan/60 rounded-3xl transition-all duration-500 relative overflow-hidden shadow-laser-subtle backdrop-blur-sm"
           >
             {/* Top Instagram Media Tag */}
-            <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
-              <span className="font-mono text-[9px] tracking-widest text-ls-mono-pureWhite px-2.5 py-1 bg-ls-void-pure/85 border border-ls-blue-laserCyan/50 cyber-cut-sm uppercase">
+            <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2">
+              <span className="font-mono text-[9px] tracking-widest text-ls-mono-pureWhite px-3 py-1 bg-ls-void-pure/85 border border-ls-blue-laserCyan/40 rounded-full uppercase">
                 {post.badge}
               </span>
             </div>
 
             {/* Post Image Container */}
-            <div className="relative aspect-square overflow-hidden bg-ls-void-pure cyber-cut">
+            <div className="relative aspect-square overflow-hidden bg-ls-void-pure rounded-2xl m-2">
               <img
                 src={post.image}
                 alt={post.title}
@@ -128,11 +129,10 @@ export const GallerySection: React.FC = () => {
                     'linear-gradient(to top, var(--ls-color-void-pure) 0%, rgba(0, 56, 184, 0.3) 60%, transparent 100%)',
                 }}
               />
-              <div className="absolute inset-0 scanlines-pattern opacity-30 pointer-events-none" />
             </div>
 
             {/* Post Footer Telemetry Stamp */}
-            <div className="p-5 border-t border-ls-mono-hairline bg-ls-void-surface">
+            <div className="p-5 bg-transparent">
               <p className="font-rave text-base font-black tracking-wide text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors uppercase">
                 {post.title}
               </p>
@@ -150,14 +150,14 @@ export const GallerySection: React.FC = () => {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ls-void-pure/95 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ls-void-pure/90 backdrop-blur-md"
           onClick={() => setActivePost(null)}
         >
           <div
-            className="relative max-w-lg w-full bg-ls-void-surface border border-ls-blue-laserCyan cyber-cut shadow-laser-intense p-5"
+            className="relative max-w-lg w-full bg-ls-void-abyss/90 border border-ls-mono-hairline/60 rounded-3xl shadow-laser-subtle p-6 backdrop-blur-md"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-4 pb-2 border-b border-ls-mono-hairline font-mono text-xs">
+            <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/[0.06] font-mono text-xs">
               <span className="text-ls-blue-laserCyan tracking-widest uppercase">
                 {activePost.timestamp}
               </span>
@@ -170,7 +170,7 @@ export const GallerySection: React.FC = () => {
               </button>
             </div>
 
-            <div className="relative aspect-square overflow-hidden cyber-cut">
+            <div className="relative aspect-square overflow-hidden rounded-2xl bg-ls-void-pure">
               <img
                 src={activePost.image}
                 alt={activePost.title}

@@ -28,19 +28,19 @@ export const GlowButton: React.FC<GlowButtonProps> = ({
   id,
 }) => {
   const baseClasses =
-    'relative inline-flex items-center justify-center font-mono font-bold tracking-[0.22em] uppercase text-xs sm:text-sm px-8 py-3.5 transition-all duration-200 focus:outline-none select-none disabled:opacity-40 disabled:cursor-not-allowed cyber-cut-sm group overflow-hidden cursor-pointer';
+    'relative inline-flex items-center justify-center font-mono font-bold tracking-[0.2em] uppercase text-xs sm:text-sm px-8 py-3.5 transition-all duration-300 focus:outline-none select-none disabled:opacity-40 disabled:cursor-not-allowed rounded-full group overflow-hidden cursor-pointer';
 
   const widthClass = fullWidth ? 'w-full' : '';
 
   const variantStyles = {
     primary:
-      'bg-gradient-to-r from-ls-blue-electric via-ls-blue-laserCyan to-ls-blue-electric text-ls-void-pure border border-ls-blue-iceStrobe/80 shadow-[0_0_22px_rgba(0,140,255,0.45)] hover:shadow-[0_0_35px_rgba(0,140,255,0.8)] hover:brightness-110 active:scale-[0.98]',
+      'bg-gradient-to-r from-ls-blue-electric via-ls-blue-laserCyan to-ls-blue-electric text-ls-void-pure shadow-[0_0_20px_rgba(0,140,255,0.45)] hover:shadow-[0_0_35px_rgba(0,140,255,0.75)] hover:brightness-110 active:scale-[0.98]',
     secondary:
-      'bg-ls-void-abyss text-ls-mono-pureWhite border border-ls-mono-hairline hover:border-ls-blue-laserCyan hover:text-ls-blue-laserCyan hover:shadow-laser-subtle',
+      'bg-ls-void-abyss/80 text-ls-blue-iceStrobe border border-ls-mono-hairline hover:border-ls-blue-laserCyan hover:text-ls-blue-laserCyan hover:shadow-[0_0_20px_rgba(0,140,255,0.3)] backdrop-blur-sm active:scale-[0.98]',
     outline:
-      'bg-transparent text-ls-blue-laserCyan border border-ls-blue-laserCyan hover:bg-ls-blue-laserCyan hover:text-ls-void-pure hover:shadow-laser-intense',
+      'bg-transparent text-ls-blue-laserCyan border border-ls-blue-laserCyan/70 hover:bg-ls-blue-laserCyan hover:text-ls-void-pure hover:shadow-[0_0_25px_rgba(0,140,255,0.5)] active:scale-[0.98]',
     subtle:
-      'bg-transparent text-ls-mono-silver hover:text-ls-blue-laserCyan hover:border-b hover:border-ls-blue-laserCyan px-3 py-2',
+      'bg-transparent text-ls-mono-silver hover:text-ls-blue-laserCyan px-3 py-2 transition-colors',
   };
 
   return (
@@ -51,16 +51,10 @@ export const GlowButton: React.FC<GlowButtonProps> = ({
       disabled={disabled}
       className={`${baseClasses} ${variantStyles[variant]} ${widthClass} ${className}`}
     >
-      {/* Corner Cyber Spikes */}
-      <span className="absolute top-0 left-0 w-2.5 h-[1.5px] bg-ls-blue-laserCyan opacity-90" />
-      <span className="absolute top-0 left-0 h-2.5 w-[1.5px] bg-ls-blue-laserCyan opacity-90" />
-      <span className="absolute bottom-0 right-0 w-2.5 h-[1.5px] bg-ls-blue-laserCyan opacity-90" />
-      <span className="absolute bottom-0 right-0 h-2.5 w-[1.5px] bg-ls-blue-laserCyan opacity-90" />
-
-      {/* Cyber Shimmer Sweep */}
+      {/* Soft Light Shimmer */}
       <span
         aria-hidden="true"
-        className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none bg-gradient-to-r from-transparent via-cyan-300/25 to-transparent"
+        className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none bg-gradient-to-r from-transparent via-ls-blue-iceStrobe/30 to-transparent"
       />
 
       <span className="relative z-10 flex items-center gap-2">{children}</span>

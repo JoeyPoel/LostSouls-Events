@@ -18,7 +18,7 @@ const SQUASH_TAU = 0.09;
 const SQUASH_PER_PX_PER_SEC = 0.0011;
 const SQUASH_MAX = 1.6;
 
-const DEFAULT_TRANSITION: Transition = {
+export const DEFAULT_TRANSITION: Transition = {
     type: "spring",
     stiffness: 110,
     damping: 13,

@@ -11,11 +11,11 @@ export const TelemetryBar: React.FC = () => {
   return (
     <aside
       aria-label="Event telemetry"
-      className="w-full border-y border-ls-mono-hairline bg-ls-void-abyss py-5 px-4 sm:px-8 select-none"
+      className="w-full py-8 px-4 sm:px-6 select-none"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 font-mono uppercase">
-        <div className="flex flex-col border-l border-ls-blue-laserCyan/50 pl-3">
-          <span className="text-[10px] tracking-[0.25em] text-ls-mono-muted mb-1">
+      <div className="max-w-5xl mx-auto bg-ls-void-abyss/40 border border-ls-mono-hairline/40 rounded-3xl py-5 px-6 sm:px-10 backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 gap-6 uppercase text-center sm:text-left shadow-laser-subtle">
+        <div className="flex flex-col">
+          <span className="text-[10px] tracking-[0.3em] text-ls-mono-muted mb-1">
             {STRINGS.telemetryRibbon.dateLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-mono-pureWhite tracking-widest">
@@ -23,8 +23,8 @@ export const TelemetryBar: React.FC = () => {
           </span>
         </div>
 
-        <div className="flex flex-col border-l border-ls-blue-laserCyan/50 pl-3">
-          <span className="text-[10px] tracking-[0.25em] text-ls-mono-muted mb-1">
+        <div className="flex flex-col">
+          <span className="text-[10px] tracking-[0.3em] text-ls-mono-muted mb-1">
             {STRINGS.telemetryRibbon.timeLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-mono-pureWhite tracking-widest">
@@ -32,8 +32,8 @@ export const TelemetryBar: React.FC = () => {
           </span>
         </div>
 
-        <div className="flex flex-col border-l border-ls-blue-laserCyan/50 pl-3">
-          <span className="text-[10px] tracking-[0.25em] text-ls-mono-muted mb-1">
+        <div className="flex flex-col">
+          <span className="text-[10px] tracking-[0.3em] text-ls-mono-muted mb-1">
             {STRINGS.telemetryRibbon.venueLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-blue-laserCyan tracking-widest">
@@ -41,8 +41,8 @@ export const TelemetryBar: React.FC = () => {
           </span>
         </div>
 
-        <div className="flex flex-col border-l border-ls-blue-laserCyan/50 pl-3">
-          <span className="text-[10px] tracking-[0.25em] text-ls-mono-muted mb-1">
+        <div className="flex flex-col">
+          <span className="text-[10px] tracking-[0.3em] text-ls-mono-muted mb-1">
             {STRINGS.telemetryRibbon.accessLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-mono-pureWhite tracking-widest">

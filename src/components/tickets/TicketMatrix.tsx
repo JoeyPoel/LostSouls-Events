@@ -50,14 +50,15 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
   // State view: Order Confirmed
   if (status === 'CONFIRMED' && confirmedOrderNumber) {
     return (
-      <div className="p-7 sm:p-9 bg-ls-void-surface border border-ls-blue-laserCyan cyber-cut shadow-laser-intense relative">
+      <div className="p-7 sm:p-9 bg-ls-void-abyss/80 border border-ls-mono-hairline/60 rounded-3xl shadow-laser-subtle backdrop-blur-sm relative">
         <div className="flex items-center gap-3 mb-4">
+          <span className="w-2 h-2 rounded-full bg-ls-blue-laserCyan" />
           <h4 className="font-mono text-base font-bold tracking-[0.25em] text-ls-mono-pureWhite uppercase">
             {STRINGS.tickets.orderSuccess}
           </h4>
         </div>
 
-        <div className="my-6 p-5 bg-ls-void-abyss border border-ls-blue-laserCyan/40 cyber-cut-sm">
+        <div className="my-6 p-5 bg-ls-void-pure/60 border border-ls-blue-laserCyan/30 rounded-2xl">
           <p className="font-mono text-[11px] tracking-widest text-ls-mono-muted uppercase mb-1">
             {STRINGS.tickets.orderNumberLabel}
           </p>
@@ -66,7 +67,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
           </p>
         </div>
 
-        <p className="font-mono text-xs tracking-wider text-ls-mono-silver uppercase mb-7 leading-relaxed">
+        <p className="text-xs tracking-wider text-ls-mono-silver mb-7 leading-relaxed">
           {STRINGS.footer.subscribeSuccess}
         </p>
 
@@ -78,9 +79,9 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
   }
 
   return (
-    <div className="p-6 sm:p-8 bg-ls-void-surface border border-ls-mono-hairline cyber-cut relative shadow-laser-subtle">
+    <div className="p-6 sm:p-8 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl relative shadow-laser-subtle backdrop-blur-sm">
       {/* Matrix Header */}
-      <div className="flex items-center justify-between pb-4 mb-6 border-b border-ls-mono-hairline">
+      <div className="flex items-center justify-between pb-4 mb-6 border-b border-ls-mono-hairline/40">
         <div className="flex items-center gap-3 pl-2">
           <h3 className="font-mono text-sm sm:text-base font-bold tracking-[0.25em] uppercase text-ls-mono-pureWhite">
             {STRINGS.tickets.headerTitle}
@@ -101,29 +102,29 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
           return (
             <div
               key={tier.id}
-              className={`p-4 sm:p-5 border cyber-cut-sm transition-all duration-200 relative ${
+              className={`p-4 sm:p-5 border rounded-2xl transition-all duration-300 relative ${
                 isSoldOut
-                  ? 'border-ls-mono-dark bg-ls-void-abyss/40 opacity-40'
+                  ? 'border-ls-mono-dark/50 bg-ls-void-abyss/30 opacity-40'
                   : selectedQty > 0
-                  ? 'border-ls-blue-laserCyan bg-ls-blue-cobalt/15 shadow-laser-subtle'
-                  : 'border-ls-mono-hairline bg-ls-void-abyss/80 hover:border-ls-blue-laserCyan/40'
+                  ? 'border-ls-blue-laserCyan/80 bg-ls-blue-cobalt/15 shadow-laser-subtle'
+                  : 'border-ls-mono-hairline/60 bg-ls-void-abyss/70 hover:border-ls-blue-laserCyan/50'
               }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 {/* Tier Info */}
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-ls-blue-laserCyan rotate-45" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan" />
                     <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-ls-mono-pureWhite">
                       {tier.name}
                     </span>
                     {isSoldOut ? (
                       <span className="font-mono text-[10px] tracking-widest uppercase text-ls-state-soldOut">
-                        [{STRINGS.tickets.tierSoldOutLabel}]
+                        {STRINGS.tickets.tierSoldOutLabel}
                       </span>
                     ) : availableUnits < 50 ? (
                       <span className="font-mono text-[10px] tracking-widest uppercase text-ls-state-warning">
-                        [{STRINGS.tickets.tierLowStockLabel}]
+                        {STRINGS.tickets.tierLowStockLabel}
                       </span>
                     ) : null}
                   </div>
@@ -141,11 +142,11 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
                 {/* Counter or Exhausted Badge */}
                 <div className="flex items-center self-end sm:self-center">
                   {isSoldOut ? (
-                    <span className="font-mono text-xs uppercase tracking-widest text-ls-mono-muted px-4 py-2 border border-ls-mono-dark cyber-cut-sm">
+                    <span className="font-mono text-xs uppercase tracking-widest text-ls-mono-muted px-4 py-1.5 border border-ls-mono-dark rounded-full">
                       {STRINGS.tickets.phaseSoldOut}
                     </span>
                   ) : (
-                    <div className="flex items-center border border-ls-mono-hairline bg-ls-void-pure cyber-cut-sm">
+                    <div className="flex items-center border border-ls-mono-hairline/60 bg-ls-void-pure/80 rounded-full overflow-hidden">
                       <button
                         type="button"
                         onClick={() => decrementTier(tier.id)}
@@ -177,7 +178,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
       </div>
 
       {/* Cart Summary & Checkout Form */}
-      <form onSubmit={handleCheckoutSubmit} className="mt-8 pt-6 border-t border-ls-mono-hairline">
+      <form onSubmit={handleCheckoutSubmit} className="mt-8 pt-6 border-t border-ls-mono-hairline/40">
         <div className="flex items-center justify-between mb-4">
           <span className="font-mono text-xs tracking-[0.25em] uppercase text-ls-mono-silver">
             {STRINGS.tickets.orderTotalLabel}
@@ -196,7 +197,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
             required
             disabled={status === 'PROCESSING' || totalTickets === 0}
             id="ticket-checkout-email-input"
-            className="w-full px-4 py-3.5 bg-ls-void-pure border border-ls-mono-hairline cyber-cut-sm text-ls-mono-pureWhite font-mono text-xs placeholder:text-ls-mono-dark focus:border-ls-blue-laserCyan focus:outline-none disabled:opacity-40 transition-colors"
+            className="w-full px-5 py-3.5 bg-ls-void-pure/80 border border-ls-mono-hairline/60 rounded-full text-ls-mono-pureWhite font-mono text-xs placeholder:text-ls-mono-dark focus:border-ls-blue-laserCyan focus:outline-none disabled:opacity-40 transition-colors"
           />
 
           <GlowButton

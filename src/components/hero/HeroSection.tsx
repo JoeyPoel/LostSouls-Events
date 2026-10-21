@@ -30,15 +30,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       id="hero"
       className="relative min-h-screen w-full flex flex-col items-center justify-between px-4 sm:px-6 lg:px-8 pt-24 pb-12 overflow-hidden bg-transparent text-ls-mono-pureWhite select-none"
     >
-      {/* Top Telemetry Stamp */}
-      <div className="relative z-10 flex flex-col items-center text-center">
-        <div className="flex items-center gap-2 px-3 py-1 border border-ls-mono-hairline bg-ls-void-abyss/60 backdrop-blur-sm">
-          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-ls-mono-silver uppercase">
-            {STRINGS.meta.editionTelemetry} // {STRINGS.meta.cityCoordinates}
-          </span>
-        </div>
-      </div>
-
       {/* Centerpiece: Monolithic Brand Title + Subtitle + Waitlist Gateway */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl mx-auto w-full my-auto py-6">
         <h1 className="font-editorial text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-blue-iceStrobe uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
@@ -58,7 +49,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             variant="primary"
             onClick={onTicketClick}
             id="hero-buy-final-soul"
-            className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest bg-ls-blue-cobalt hover:bg-ls-blue-laserCyan text-ls-mono-pureWhite border border-ls-blue-laserCyan shadow-laser-sharp"
+            className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest"
           >
             {STRINGS.hero.primaryCta}
           </GlowButton>

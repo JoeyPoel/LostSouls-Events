@@ -27,13 +27,11 @@ export const WireBadge: React.FC<WireBadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 font-mono text-[11px] tracking-widest uppercase border ${
+      className={`inline-flex items-center px-3 py-1 font-mono text-[10px] sm:text-[11px] tracking-[0.2em] uppercase rounded-full border ${
         variantStyles[variant]
       } ${pulse ? 'animate-pulse' : ''} ${className}`}
     >
-      <span className="opacity-60">[</span>
       <span>{children}</span>
-      <span className="opacity-60">]</span>
     </span>
   );
 };

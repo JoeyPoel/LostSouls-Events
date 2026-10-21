@@ -42,10 +42,10 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         {/* Left Column: MAIN STAGE Headline and Numbered Ledger */}
         <div className="lg:col-span-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-6 border-b border-ls-mono-hairline">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-1.5 h-1.5 bg-ls-blue-laserCyan" />
+                <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan" />
                 <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
                   {STRINGS.lineupLedger.preTitle}
                 </span>
@@ -55,33 +55,33 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
               </h2>
             </div>
 
-            <p className="font-mono text-xs text-ls-mono-silver uppercase max-w-xs leading-relaxed">
+            <p className="text-xs sm:text-sm text-ls-mono-silver uppercase max-w-xs leading-relaxed">
               {STRINGS.lineupLedger.description}
             </p>
           </div>
 
-          {/* Numbered Ledger Rows */}
-          <div className="divide-y divide-ls-mono-hairline border-y border-ls-mono-hairline">
+          {/* Clean Artist Roster Cards */}
+          <div className="space-y-2.5">
             {stageArtists.map((artist, idx) => {
               const formattedIndex = (idx + 1).toString().padStart(2, '0');
 
               return (
                 <div
                   key={artist.id}
-                  className="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 group hover:bg-ls-void-abyss px-2 transition-all duration-300"
+                  className="p-4 sm:p-5 rounded-2xl bg-ls-void-abyss/40 border border-white/[0.04] hover:border-ls-blue-laserCyan/40 hover:bg-ls-void-abyss/80 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 group transition-all duration-300"
                 >
                   {/* Left: Index & Artist Name */}
-                  <div className="flex items-baseline gap-6 sm:gap-8">
+                  <div className="flex items-baseline gap-5 sm:gap-7">
                     <span className="font-mono text-xs tracking-[0.2em] text-ls-blue-laserCyan/70 group-hover:text-ls-blue-laserCyan transition-colors">
                       {formattedIndex}
                     </span>
-                    <span className="font-editorial text-2xl sm:text-4xl font-black uppercase tracking-tight text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
+                    <span className="font-editorial text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
                       {artist.name}
                     </span>
                   </div>
 
                   {/* Right: Format Specification */}
-                  <span className="font-mono text-[11px] sm:text-xs tracking-[0.2em] text-ls-mono-muted group-hover:text-ls-mono-silver uppercase transition-colors sm:text-right">
+                  <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-ls-mono-muted group-hover:text-ls-mono-silver uppercase transition-colors sm:text-right">
                     {artist.performance}
                   </span>
                 </div>
@@ -92,14 +92,14 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
 
         {/* Right Column: Sticky Ticket Telemetry Box */}
         <div className="lg:col-span-4 sticky top-24">
-          <div className="bg-ls-void-abyss border border-ls-mono-hairline p-6 sm:p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+          <div className="bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-laser-subtle backdrop-blur-sm relative overflow-hidden">
             {/* Top Border Cyan Laser Accent */}
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-ls-blue-laserCyan to-transparent opacity-80" />
 
             <div>
               {/* Badge & Title */}
               <div className="flex items-center gap-2 mb-4">
-                <span className="w-1.5 h-1.5 bg-ls-blue-laserCyan" />
+                <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan" />
                 <span className="font-mono text-[10px] tracking-[0.25em] text-ls-blue-laserCyan uppercase">
                   {STRINGS.tickets.headerTitle}
                 </span>
@@ -111,16 +111,16 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
                   {STRINGS.hero.priceDisplay}
                 </span>
               </div>
-              <p className="font-mono text-[10px] tracking-widest text-ls-mono-muted uppercase mb-8">
+              <p className="font-mono text-[10px] tracking-widest text-ls-mono-muted uppercase mb-6">
                 {STRINGS.hero.serviceFeeNotice}
               </p>
 
               {/* Price Breakdown Ledger */}
-              <div className="border-t border-ls-mono-hairline divide-y divide-ls-mono-hairline mb-8">
+              <div className="space-y-2.5 py-4 my-6 border-y border-white/[0.05]">
                 {ticketBreakdown.map((row) => (
-                  <div key={row.label} className="py-2.5 flex items-center justify-between font-mono text-xs">
-                    <span className="text-ls-mono-muted uppercase tracking-wider">{row.label}</span>
-                    <span className="text-ls-mono-pureWhite font-medium tracking-wide">{row.value}</span>
+                  <div key={row.label} className="flex items-center justify-between text-xs">
+                    <span className="text-ls-mono-muted uppercase tracking-wider text-[11px]">{row.label}</span>
+                    <span className="text-ls-mono-pureWhite font-mono font-medium tracking-wide">{row.value}</span>
                   </div>
                 ))}
               </div>
@@ -131,7 +131,7 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
               variant="primary"
               onClick={onTicketClick}
               id="lineup-get-final-soul"
-              className="w-full py-4 text-xs font-bold uppercase tracking-widest bg-ls-blue-cobalt hover:bg-ls-blue-laserCyan text-ls-mono-pureWhite border border-ls-blue-laserCyan shadow-laser-subtle"
+              className="w-full py-4 text-xs font-bold uppercase tracking-widest"
             >
               {STRINGS.hero.primaryCta}
             </GlowButton>

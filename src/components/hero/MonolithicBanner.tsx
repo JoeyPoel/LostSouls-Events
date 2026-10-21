@@ -50,7 +50,7 @@ export const MonolithicBanner: React.FC<MonolithicBannerProps> = ({ onTicketClic
           variant="primary"
           onClick={onTicketClick}
           id="monolithic-get-final-soul"
-          className="px-10 py-4 text-xs font-bold uppercase tracking-widest bg-ls-blue-cobalt hover:bg-ls-blue-laserCyan text-ls-mono-pureWhite border border-ls-blue-laserCyan shadow-laser-sharp"
+          className="px-10 py-4 text-xs font-bold uppercase tracking-widest"
         >
           {STRINGS.monolithicBanner.cta}
         </GlowButton>

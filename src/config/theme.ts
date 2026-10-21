@@ -25,7 +25,7 @@ export const THEME = {
       silver: '#cbd5e1',
       muted: '#64748b',
       dark: '#1e293b',
-      hairline: 'rgba(0, 140, 255, 0.22)',
+      hairline: 'rgba(255, 255, 255, 0.08)',
     },
     state: {
       soldOut: '#334155',

@@ -24,7 +24,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
         {/* Left Column: Editorial Headline & Manifesto */}
         <div className="lg:col-span-4 flex flex-col justify-center">
           <div className="flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-ls-blue-laserCyan" />
+            <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan" />
             <span className="font-mono text-xs tracking-[0.25em] text-ls-mono-muted uppercase">
               {STRINGS.merch.preTitle}
             </span>
@@ -34,7 +34,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
             {STRINGS.merch.title}
           </h2>
 
-          <p className="font-mono text-xs sm:text-sm text-ls-mono-silver tracking-wider uppercase mb-8 leading-relaxed">
+          <p className="text-xs sm:text-sm text-ls-mono-silver tracking-wider uppercase mb-8 leading-relaxed">
             {STRINGS.merch.description}
           </p>
 
@@ -43,7 +43,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
               variant="secondary"
               onClick={onMerchClick}
               id="small-runs-view-merchandise"
-              className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest border border-ls-mono-hairline hover:border-ls-blue-laserCyan hover:text-ls-blue-laserCyan text-ls-mono-pureWhite bg-ls-void-surface"
+              className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest"
             >
               {STRINGS.merch.cta}
             </GlowButton>
@@ -55,7 +55,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
           {STRINGS.merch.items.map((item) => (
             <article
               key={item.id}
-              className="group flex flex-col bg-ls-void-abyss border border-ls-mono-hairline hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden"
+              className="group flex flex-col bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden backdrop-blur-sm"
             >
               {/* Tall Vertical Image Container */}
               <div className="relative aspect-[9/16] overflow-hidden bg-ls-void-pure">
@@ -76,7 +76,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
               </div>
 
               {/* Bottom Spec Label */}
-              <div className="p-4 bg-ls-void-surface border-t border-ls-mono-hairline flex flex-col">
+              <div className="p-5 bg-ls-void-surface/80 flex flex-col">
                 <span className="font-mono text-[9px] tracking-widest text-ls-mono-muted uppercase mb-1">
                   {item.number}
                 </span>
