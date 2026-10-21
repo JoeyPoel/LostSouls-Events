@@ -34,7 +34,7 @@ export const GlowButton: React.FC<GlowButtonProps> = ({
 
   const variantStyles = {
     primary:
-      'bg-ls-blue-cobalt text-ls-mono-pureWhite border border-ls-blue-laserCyan shadow-laser-subtle hover:bg-ls-blue-laserCyan hover:text-ls-void-pure hover:shadow-laser-intense active:scale-[0.98]',
+      'bg-gradient-to-r from-ls-blue-electric via-ls-blue-laserCyan to-ls-blue-electric text-ls-void-pure border border-ls-blue-iceStrobe/80 shadow-[0_0_22px_rgba(0,140,255,0.45)] hover:shadow-[0_0_35px_rgba(0,140,255,0.8)] hover:brightness-110 active:scale-[0.98]',
     secondary:
       'bg-ls-void-abyss text-ls-mono-pureWhite border border-ls-mono-hairline hover:border-ls-blue-laserCyan hover:text-ls-blue-laserCyan hover:shadow-laser-subtle',
     outline:

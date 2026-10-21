@@ -61,7 +61,11 @@
 
 /* Blue Laser Glow Utilities */
 .laser-glow-text {
-  text-shadow: 0 0 14px var(--ls-color-blue-laserCyan), 0 0 32px var(--ls-color-blue-cobalt);
+  color: var(--ls-color-blue-iceStrobe);
+  text-shadow: 
+    0 0 12px var(--ls-color-blue-laserCyan), 
+    0 0 28px var(--ls-color-blue-electric), 
+    0 0 55px var(--ls-color-blue-cobalt);
 }
 
 .laser-glow-box {
@@ -85,7 +89,7 @@
 }
 
 .card-blue-gradient {
-  background: radial-gradient(circle at top, rgba(0, 102, 255, 0.18) 0%, var(--ls-color-void-abyss) 75%);
+  background: radial-gradient(circle at top, rgba(0, 140, 255, 0.18) 0%, var(--ls-color-void-abyss) 75%);
 }
 
 /* CRT Scanline Overlay */

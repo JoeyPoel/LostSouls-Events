@@ -49,7 +49,7 @@ export const TeaserView: React.FC = () => {
 
       {/* Monolithic Centerpiece */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-6xl mx-auto w-full">
-        <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-mono-pureWhite uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
+        <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-blue-iceStrobe uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
           {STRINGS.teaser.brandTitle}
         </h1>
 

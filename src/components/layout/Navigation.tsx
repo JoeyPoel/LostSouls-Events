@@ -30,7 +30,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onTicketClick }) => {
             className="flex flex-col group cursor-pointer focus:outline-none text-left"
             id="nav-brand"
           >
-            <span className="font-editorial font-bold tracking-[0.14em] text-xl sm:text-2xl text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan group-hover:laser-glow-text transition-all duration-300">
+            <span className="font-editorial font-bold tracking-[0.14em] text-xl sm:text-2xl text-ls-blue-iceStrobe group-hover:text-ls-blue-laserCyan group-hover:laser-glow-text transition-all duration-300">
               {STRINGS.teaser.brandTitle}
             </span>
             <span className="font-mono text-[9px] tracking-[0.25em] text-ls-mono-muted">
@@ -97,7 +97,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onTicketClick }) => {
             variant="primary"
             onClick={onTicketClick}
             id="nav-ticket-cta"
-            className="px-5 py-2.5 text-xs font-bold uppercase tracking-widest bg-ls-blue-cobalt hover:bg-ls-blue-laserCyan text-ls-mono-pureWhite border border-ls-blue-laserCyan shadow-laser-subtle"
+            className="px-5 py-2.5 text-xs font-bold uppercase tracking-widest"
           >
             {STRINGS.navigation.ticketCta}
           </GlowButton>

@@ -25,23 +25,23 @@ export const THEME = {
       silver: '#cbd5e1',
       muted: '#64748b',
       dark: '#1e293b',
-      hairline: 'rgba(0, 229, 255, 0.22)',
+      hairline: 'rgba(0, 140, 255, 0.22)',
     },
     state: {
       soldOut: '#334155',
       warning: '#f59e0b',
-      live: '#00d4ff',
+      live: '#008cffff',
     },
   },
   glows: {
-    laserSubtle: '0 0 16px rgba(0, 102, 255, 0.4)',
-    laserIntense: '0 0 25px rgba(0, 212, 255, 0.75), 0 0 55px rgba(0, 56, 184, 0.45)',
-    whiteStrobe: '0 0 18px rgba(255, 255, 255, 0.85)',
+    laserSubtle: '0 0 16px rgba(0, 140, 255, 0.4)',
+    laserIntense: '0 0 25px rgba(0, 140, 255, 0.8), 0 0 60px rgba(0, 68, 255, 0.45)',
+    whiteStrobe: '0 0 18px rgba(224, 247, 255, 0.9)',
   },
   borders: {
-    subtle: '1px solid rgba(0, 102, 255, 0.2)',
-    cyanLaser: '1px solid rgba(0, 212, 255, 0.45)',
-    active: '1px solid #00d4ff',
+    subtle: '1px solid rgba(0, 140, 255, 0.25)',
+    cyanLaser: '1px solid rgba(0, 140, 255, 0.6)',
+    active: '1px solid #008cffff',
   },
 } as const;
 

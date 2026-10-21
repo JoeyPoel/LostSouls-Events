@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <h3 className="font-editorial text-2xl sm:text-3xl font-bold tracking-[0.14em] text-ls-mono-pureWhite laser-glow-text">
+                <h3 className="font-editorial text-2xl sm:text-3xl font-bold tracking-[0.14em] text-ls-blue-iceStrobe laser-glow-text">
                   {STRINGS.teaser.brandTitle}
                 </h3>
               </div>

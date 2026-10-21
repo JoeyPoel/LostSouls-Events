@@ -41,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Centerpiece: Monolithic Brand Title + Subtitle + Waitlist Gateway */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl mx-auto w-full my-auto py-6">
-        <h1 className="font-editorial text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-mono-pureWhite uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
+        <h1 className="font-editorial text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-blue-iceStrobe uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
           {STRINGS.teaser.brandTitle}
         </h1>
 
