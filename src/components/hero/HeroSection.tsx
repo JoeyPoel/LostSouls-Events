@@ -28,7 +28,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col items-center justify-between px-4 sm:px-6 lg:px-8 pt-24 pb-12 overflow-hidden bg-ls-void-pure text-ls-mono-pureWhite select-none"
+      className="relative min-h-screen w-full flex flex-col items-center justify-between px-4 sm:px-6 lg:px-8 pt-24 pb-12 overflow-hidden bg-transparent text-ls-mono-pureWhite select-none"
     >
       {/* Top Telemetry Stamp */}
       <div className="relative z-10 flex flex-col items-center text-center">

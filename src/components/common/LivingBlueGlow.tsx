@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import HalftoneBloom from '@/components/originkit/ui/halftone-bloom';
+import { THEME } from '@/config/theme';
 
 export interface GlowSpot {
   x: number; // percentage of viewport width (0-100)
@@ -29,14 +31,13 @@ const SECTION_IDS = ['hero', 'events', 'lineup', 'merch', 'gallery', 'protocols'
 
 /**
  * LivingBlueGlow Component
- * Renders a single living subterranean blue ambient shadow that:
- * - Sits in the middle bottom on the front page of the test site.
- * - Glides diagonally from spot to spot across the screen with each section scroll.
- * - Features decoupled GPU-accelerated translation and gentle organic breathing.
- * - Matches the signature radial gradient: Cobalt to Deep Navy to Transparent.
+ * Renders the living subterranean visual background for Lost Souls:
+ * - Originkit "Halftone Bloom" 86-layer WebGL2 folded ribbon field with rotated halftone grid
+ * - Interactive pointer tracking: halftone dots swell and bloom toward the cursor
+ * - Single subterranean living blue shadow gliding diagonally with section scroll
  * Zero hardcoded color literals.
  *
- * @returns {JSX.Element} The dynamic diagonal living blue ambient glow.
+ * @returns {JSX.Element} The living blue ambient glow and halftone bloom field.
  */
 export const LivingBlueGlow: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('hero');
@@ -107,7 +108,29 @@ export const LivingBlueGlow: React.FC = () => {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
     >
-      {/* Outer Translating Anchor: Moves diagonally from spot to spot on section scroll */}
+      {/* 1. Originkit Halftone Bloom Component: WebGL2 86-layer folded ribbon field */}
+      <HalftoneBloom
+        background={THEME.colors.void.pure}
+        color1={THEME.colors.blue.laserCyan}
+        color2={THEME.colors.blue.cobalt}
+        speed={35}
+        size={140}
+        angle={180}
+        dotSize={6}
+        hover={180}
+        reach={380}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          minWidth: 0,
+          minHeight: 0,
+          opacity: 0.65,
+        }}
+      />
+
+      {/* 2. Outer Spatial Anchor: Moves diagonally from spot to spot on section scroll */}
       <div
         className="absolute top-0 left-0 pointer-events-none transform-gpu"
         style={{
@@ -116,9 +139,9 @@ export const LivingBlueGlow: React.FC = () => {
           willChange: 'transform',
         }}
       >
-        {/* Inner Organic Breathing Glow: Pulses gently on GPU with zero blur recalculation */}
+        {/* Inner Organic Breathing Glow */}
         <div
-          className="w-[520px] h-[520px] sm:w-[750px] sm:h-[750px] lg:w-[900px] lg:h-[900px] rounded-full blur-[100px] sm:blur-[130px] opacity-25 sm:opacity-30 pointer-events-none transform-gpu animate-glow-breathe"
+          className="w-[520px] h-[520px] sm:w-[750px] sm:h-[750px] lg:w-[900px] lg:h-[900px] rounded-full blur-[100px] sm:blur-[130px] opacity-20 sm:opacity-25 pointer-events-none transform-gpu animate-glow-breathe"
           style={{
             background:
               'radial-gradient(circle, var(--ls-color-blue-cobalt) 0%, var(--ls-color-blue-deepNavy) 50%, transparent 75%)',

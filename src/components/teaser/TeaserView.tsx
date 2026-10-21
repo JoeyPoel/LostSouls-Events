@@ -2,14 +2,17 @@ import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import { Noise } from '@/components/common/Noise';
 import { WaitlistForm } from '@/components/teaser/WaitlistForm';
+import HalftoneBloom from '@/components/originkit/ui/halftone-bloom';
+import { THEME } from '@/config/theme';
 
 /**
  * TeaserView Component
  * Renders the minimalist public teaser void displayed at the normal root domain (/):
  * - Monolithic "LØST SØULS" title in editorial serif with laser text glow
+ * - Originkit "Halftone Bloom" WebGL2 86-layer folded ribbon field with rotated halftone grid
  * - Volumetric subterranean blue shadow centered directly behind the centerpiece
  * - Cryptic announcement: "SOMETHING BIG IS COMING..."
- * - Seamless floating waitlist transmission gateway
+ * - Seamless floating waitlist transmission gateway with persistent underline
  * Zero hardcoded color literals.
  *
  * @returns {JSX.Element} The public teaser interface.
@@ -20,19 +23,29 @@ export const TeaserView: React.FC = () => {
       {/* Heavy Warehouse Analog Noise Overlay */}
       <Noise />
 
-      {/* Volumetric Subterranean Void Ambience - Centered directly behind LØST SØULS */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none flex items-center justify-center"
-      >
-        <div
-          className="w-[500px] h-[500px] sm:w-[750px] sm:h-[750px] rounded-full blur-[120px] opacity-25 animate-fog-drift"
-          style={{
-            background:
-              'radial-gradient(circle, var(--ls-color-blue-cobalt) 0%, var(--ls-color-blue-deepNavy) 50%, transparent 75%)',
-          }}
-        />
-      </div>
+      {/* Originkit Halftone Bloom Component */}
+      <HalftoneBloom
+        background={THEME.colors.void.pure}
+        color1={THEME.colors.blue.laserCyan}
+        color2={THEME.colors.blue.cobalt}
+        speed={35}
+        size={140}
+        angle={180}
+        dotSize={6}
+        hover={180}
+        reach={380}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          minWidth: 0,
+          minHeight: 0,
+          opacity: 0.65,
+        }}
+      />
+
+
 
       {/* Monolithic Centerpiece */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-6xl mx-auto w-full">

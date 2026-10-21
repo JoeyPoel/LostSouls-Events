@@ -88,11 +88,7 @@ export const WaitlistForm: React.FC = () => {
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <div
-            className={`relative w-full flex items-center transition-all duration-500 pb-1 ${
-              hasContent
-                ? 'border-b border-ls-blue-laserCyan/40 focus-within:border-ls-blue-laserCyan/80'
-                : 'border-b border-transparent'
-            }`}
+            className="relative w-full flex items-center transition-all duration-500 pb-1 border-b border-ls-blue-laserCyan/30 hover:border-ls-blue-laserCyan/60 focus-within:border-ls-blue-laserCyan/90"
           >
             <input
               type="email"

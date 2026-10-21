@@ -1,7 +1,7 @@
 /**
  * Lost Souls Centralized Design Tokens & Theme Configuration
  * SINGLE SOURCE OF TRUTH: All colors, glows, borders, and visual metrics originate here.
- * Authentic Underground Dancefloor Blue Spectrum: Cobalt Floodlights, Electric Borders, and Cyan Lasers.
+ * Harmonized with the Halftone Bloom spectrum: Laser Cyan highlights, Cerulean flow, and Cobalt depth.
  */
 
 export const THEME = {
@@ -15,9 +15,9 @@ export const THEME = {
     },
     blue: {
       deepNavy: '#08142c',
-      cobalt: '#0044FF',       // Floodlight core & button core
+      cobalt: '#0044ffcb',       // Floodlight core & button core
       electric: '#0077FF',     // Active wireframes, badges, line accents
-      laserCyan: '#00E5FF',    // Laser core, hover glows, highlight text
+      laserCyan: '#008cffff',    // Laser core, hover glows, highlight text
       iceStrobe: '#E0F7FF',    // High-intensity strobe reflection
     },
     monochrome: {
@@ -25,7 +25,7 @@ export const THEME = {
       silver: '#cbd5e1',
       muted: '#64748b',
       dark: '#1e293b',
-      hairline: 'rgba(0, 102, 255, 0.18)',
+      hairline: 'rgba(0, 229, 255, 0.22)',
     },
     state: {
       soldOut: '#334155',
