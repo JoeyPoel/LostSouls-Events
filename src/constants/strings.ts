@@ -1,27 +1,27 @@
 /**
  * Lost Souls Decoupled UI Strings
  * SINGLE SOURCE OF TRUTH: Zero hardcoded user-facing strings in TSX/JSX markup.
- * Edition: "INTO THE ABYSS"
+ * Edition: "CHAPTER 01: FIRST AWAKENING"
  */
 
 export const STRINGS = {
   meta: {
     brandName: 'LOST SOULS',
-    cityCoordinates: 'AMSTERDAM // ROTTERDAM',
+    cityCoordinates: 'NETHERLANDS',
     taglineTelemetry: 'DARK RESONANCE. UNBOUND MINDS.',
-    editionTelemetry: 'EST. 2026 // CHAPTER 03',
+    editionTelemetry: 'EST. 2026 // CHAPTER 01',
     scrollPrompt: 'SCROLL TO ENTER ↓',
     pauseAmbience: 'PAUSE AMBIENCE',
     playAmbience: 'PLAY AMBIENCE',
     audioMuted: 'AUDIO OFF',
     audioActive: '154 BPM LIVE // AUDIO ACTIVE',
-    pageTitle: 'LOST SOULS // INTO THE ABYSS',
+    pageTitle: 'LOST SOULS // CHAPTER 01',
     bpmCounter: '154 BPM // INDUSTRIAL PRESSURE',
     strobeToggle: 'STROBE FLASH',
     fogDense: 'HAZE SATURATION // 94%',
     enterRitual: 'ENTER WAREHOUSE RESONANCE',
     timestampStamp: '14-11-2026 // 23:00–07:00',
-    venueAddress: 'NOW&WOW ROTTERDAM',
+    venueAddress: 'NETHERLANDS',
   },
   teaser: {
     brandTitle: 'LØST SØULS',
@@ -48,7 +48,7 @@ export const STRINGS = {
   },
   hero: {
     presents: 'LOST SOULS PRESENTS',
-    metaHeader: '14 NOVEMBER 2026 • NOW&WOW ROTTERDAM • 23:00–07:00',
+    metaHeader: '14 NOVEMBER 2026 • NETHERLANDS • 23:00–07:00',
     headlineMain: 'INTO THE',
     headlineAccent: 'ABYSS',
     manifestoSnippet: 'Industrial pressure. Hybrid live formats. A dark closing until 07:00.',
@@ -61,10 +61,10 @@ export const STRINGS = {
     soldOutNotice: 'Earlier ticket batches sold out. Secure your place for 14 November.',
   },
   monolithicBanner: {
-    badge: '14 NOVEMBER 2026 • NOW&WOW',
+    badge: '14 NOVEMBER 2026 • NETHERLANDS',
     headlineMain: 'INTO THE',
     headlineAccent: 'ABYSS',
-    telemetryLine: '23:00–07:00   ROTTERDAM   18+   FINAL SOUL',
+    telemetryLine: '23:00–07:00   NETHERLANDS   18+   FINAL SOUL',
     cta: 'Get Final Soul • €34.00',
   },
   telemetryRibbon: {
@@ -72,8 +72,8 @@ export const STRINGS = {
     dateValue: '14.11.2026',
     timeLabel: 'TIME',
     timeValue: '23:00—07:00',
-    venueLabel: 'VENUE',
-    venueValue: 'Now & Wow',
+    venueLabel: 'LOCATION',
+    venueValue: 'NETHERLANDS',
     accessLabel: 'ACCESS',
     accessValue: '18+',
   },
@@ -88,8 +88,8 @@ export const STRINGS = {
       minutes: 'MINUTES',
       seconds: 'SECONDS',
     },
-    venueLabel: 'VENUE',
-    coordinatesLabel: 'COORDINATES',
+    venueLabel: 'LOCATION',
+    coordinatesLabel: 'TERRITORY',
     dateLabel: 'TEMPORAL MARK',
     flyerRules: [
       'DOORS OPEN: 23:00 SHARP (ENTRY UNTIL 03:00)',
@@ -100,7 +100,7 @@ export const STRINGS = {
     ],
   },
   lineupLedger: {
-    preTitle: 'INTO THE ABYSS',
+    preTitle: 'CHAPTER 01 // FIRST EVENT',
     sectionTitle: 'MAIN STAGE',
     stageSubTitle: 'RAW INDUSTRIAL TUNNEL',
     description: 'Industrial pressure, hybrid live formats and a dark closing on the main stage.',
@@ -132,34 +132,18 @@ export const STRINGS = {
     breakdownAgeVal: 'Strictly 18+',
   },
   chapters: {
-    preTitle: 'PREVIOUS EDITIONS',
-    title: 'THREE CHAPTERS',
-    subtitle: 'Three editions. One evolving visual language.',
-    swipeLabel: 'EXPLORE THE EDITIONS',
+    preTitle: 'EDITION DOSSIER',
+    title: 'CHAPTER 01',
+    subtitle: 'The Debut Gathering in the Netherlands.',
+    swipeLabel: 'EXPLORE THE FIRST EVENT',
     editions: [
       {
         id: 'ch-01',
-        tag: 'CHAPTER 01',
-        dateVenue: '24 JANUARY 2026 • PANAMA AMSTERDAM',
+        tag: 'DEBUT EVENT',
+        dateVenue: '14 NOVEMBER 2026 • NETHERLANDS',
         title: 'FIRST AWAKENING',
-        description: 'Amsterdam. The first full LOST SOULS gathering.',
+        description: 'Netherlands. The first full LOST SOULS gathering.',
         image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop',
-      },
-      {
-        id: 'ch-02',
-        tag: 'CHAPTER 02',
-        dateVenue: '8 MAY 2026 • NOW&WOW ROTTERDAM',
-        title: 'ELECTRIC VOID',
-        description: 'Rotterdam. Two rooms and an intense closing.',
-        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop',
-      },
-      {
-        id: 'ch-03',
-        tag: 'NEXT CHAPTER',
-        dateVenue: '14 NOVEMBER 2026 • NOW&WOW ROTTERDAM',
-        title: 'INTO THE ABYSS',
-        description: 'Rotterdam. Two stages. Seven hours of pure resonance.',
-        image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop',
       },
     ],
   },
@@ -229,6 +213,6 @@ export const STRINGS = {
     subscribeCta: 'TRANSMIT ↗',
     subscribeSuccess: 'ACCESS GRANTED. CHECK INBOX.',
     rightsReserved: 'ALL RIGHTS RESERVED. DARK RESONANCE.',
-    coordinates: '52.3676° N, 4.9041° E // ROTTERDAM DOCKS',
+    coordinates: 'NETHERLANDS',
   },
 } as const;

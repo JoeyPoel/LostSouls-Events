@@ -1,14 +1,15 @@
 import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import { useAccordion } from '@/hooks/useAccordion';
-import { CyberSigil } from '@/components/common/CyberSigil';
-import { SigilDivider } from '@/components/common/SigilDivider';
 
 /**
  * ProtocolsSection Component
- * Cyber-tribal ritual tablets detailing entry doctrines, dress ethics,
+ * Cyber ritual tablets detailing entry doctrines, dress ethics,
  * and zero-tolerance warehouse safety codes.
- * Zero hardcoded color literals.
+ * Styled in the deep obsidian teaser void aesthetic with cyan accents.
+ * Zero sigil stars, zero hardcoded color literals.
+ *
+ * @returns {JSX.Element} Rendered house rules and protocols accordion section.
  */
 export const ProtocolsSection: React.FC = () => {
   const { isOpen, toggle } = useAccordion({
@@ -17,18 +18,15 @@ export const ProtocolsSection: React.FC = () => {
   });
 
   return (
-    <section id="protocols" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-      <SigilDivider label={STRINGS.protocols.preTitle} className="mb-12" />
-
+    <section id="protocols" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
       {/* Header */}
       <div className="mb-14 pb-6 border-b border-ls-mono-hairline">
         <div className="flex items-center gap-2 mb-2">
-          <CyberSigil variant="blade-cross" size={18} glow />
           <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
             {STRINGS.protocols.preTitle}
           </span>
         </div>
-        <h2 className="font-sans text-3xl sm:text-6xl font-black uppercase tracking-tight text-ls-mono-pureWhite">
+        <h2 className="font-editorial text-4xl sm:text-6xl font-black uppercase tracking-tight text-ls-mono-pureWhite">
           {STRINGS.protocols.title}
         </h2>
         <p className="mt-3 font-mono text-xs tracking-[0.25em] text-ls-mono-silver uppercase">
@@ -45,7 +43,7 @@ export const ProtocolsSection: React.FC = () => {
           return (
             <div
               key={rule.id}
-              className={`border cyber-cut-sm transition-all duration-300 bg-ls-void-surface relative ${
+              className={`border cyber-cut-sm transition-all duration-300 bg-ls-void-abyss/80 relative ${
                 active
                   ? 'border-ls-blue-laserCyan shadow-laser-subtle'
                   : 'border-ls-mono-hairline hover:border-ls-blue-laserCyan/40'
@@ -65,7 +63,7 @@ export const ProtocolsSection: React.FC = () => {
                   >
                     ■ {indexPrefix}
                   </span>
-                  <span className="font-mono text-sm sm:text-base font-bold uppercase tracking-wider text-ls-mono-pureWhite">
+                  <span className="font-editorial text-base sm:text-lg font-bold uppercase tracking-wider text-ls-mono-pureWhite">
                     {rule.title}
                   </span>
                 </div>
@@ -82,7 +80,7 @@ export const ProtocolsSection: React.FC = () => {
               </button>
 
               {active && (
-                <div className="px-6 sm:px-8 pb-7 pt-2 border-t border-ls-mono-hairline bg-ls-void-abyss/70">
+                <div className="px-6 sm:px-8 pb-7 pt-2 border-t border-ls-mono-hairline bg-ls-void-pure/80">
                   <p className="font-mono text-xs sm:text-sm tracking-wider text-ls-mono-silver uppercase leading-relaxed max-w-3xl">
                     {rule.content}
                   </p>

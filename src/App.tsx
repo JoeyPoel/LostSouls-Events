@@ -1,52 +1,114 @@
-import React from 'react';
-import { STRINGS } from '@/constants/strings';
+import React, { useState, useEffect } from 'react';
 import { Noise } from '@/components/common/Noise';
-import { WaitlistForm } from '@/components/teaser/WaitlistForm';
+import { LivingBlueGlow } from '@/components/common/LivingBlueGlow';
+import { Navigation } from '@/components/layout/Navigation';
+import { HeroSection } from '@/components/hero/HeroSection';
+import { TelemetryBar } from '@/components/layout/TelemetryBar';
+import { EventsSection } from '@/components/events/EventsSection';
+import { LineupLedger } from '@/components/lineup/LineupLedger';
+import { SmallRuns } from '@/components/merch/SmallRuns';
+import { GallerySection } from '@/components/gallery/GallerySection';
+import { ProtocolsSection } from '@/components/protocols/ProtocolsSection';
+import { Footer } from '@/components/layout/Footer';
+import { TeaserView } from '@/components/teaser/TeaserView';
+import { DEFAULT_EVENT } from '@/constants/event';
 
 /**
  * App Component
- * Renders the minimalist, atmospheric teaser void for Lost Souls.
- * Strips all external UI to establish total pitch-black underground mystery:
- * Centered monolithic brand title, cryptic announcement, and waitlist transmission gateway.
+ * Orchestrates routing between the public teaser (/) and the full first-event platform (/test):
+ * - Route "/": Public teaser interface with monolithic LØST SØULS, announcement, and waitlist.
+ * - Route "/test": Full digital platform tailored exclusively for Chapter 01 (First Event in the Netherlands):
+ *   - Only 1 single living blue shadow at middle bottom (organic morphing/shapeshifting).
+ *   - Clean visual aesthetics without star sigils, pulsing dots, or horizontal laser scan beams.
+ *   - No 3-chapters section and no audio ambience toggle.
+ *   - Direct ticketing matrix, artist roster, merch capsules, gallery, and protocols.
+ * Zero hardcoded color literals.
  *
- * @returns {JSX.Element} The mysterious void teaser interface.
+ * @returns {JSX.Element} The rendered view based on location path.
  */
 export const App: React.FC = () => {
+  const [pathname, setPathname] = useState<string>(() => window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = (): void => {
+      setPathname(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Public teaser at root (/); full first-event site at /test
+  const isTestRoute = pathname.startsWith('/test');
+
+  if (!isTestRoute) {
+    return <TeaserView />;
+  }
+
+  /**
+   * Smoothly navigates the viewport down to the ticketing and event matrix section.
+   */
+  const handleTicketClick = (): void => {
+    const eventsElement = document.getElementById('events');
+    if (eventsElement) {
+      eventsElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  /**
+   * Smoothly navigates the viewport down to the artist lineup ledger.
+   */
+  const handleLineupClick = (): void => {
+    const lineupElement = document.getElementById('lineup');
+    if (lineupElement) {
+      lineupElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <main className="min-h-screen h-screen w-full bg-ls-void-pure text-ls-mono-pureWhite flex flex-col items-center justify-center relative overflow-hidden select-none px-6">
+    <div className="min-h-screen w-full bg-ls-void-pure text-ls-mono-pureWhite relative overflow-x-hidden">
       {/* Heavy Warehouse Analog Noise Overlay */}
       <Noise />
 
-      {/* Volumetric Subterranean Void Ambience */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none flex items-center justify-center"
-      >
-        <div
-          className="w-[500px] h-[500px] sm:w-[750px] sm:h-[750px] rounded-full blur-[120px] opacity-25 animate-fog-drift"
-          style={{
-            background:
-              'radial-gradient(circle, var(--ls-color-blue-cobalt) 0%, var(--ls-color-blue-deepNavy) 50%, transparent 75%)',
-          }}
+      {/* Single Living Subterranean Blue Shadow at Middle Bottom */}
+      <LivingBlueGlow />
+
+      {/* Header Navigation */}
+      <Navigation onTicketClick={handleTicketClick} />
+
+      <main className="relative z-10 flex flex-col">
+        {/* Monolithic Teaser Hero Section for Chapter 01 */}
+        <HeroSection
+          onTicketClick={handleTicketClick}
+          onLineupClick={handleLineupClick}
         />
-      </div>
 
-      {/* Mysterious Monolithic Centerpiece */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-6xl mx-auto w-full">
-        <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[0.14em] sm:tracking-[0.2em] text-ls-mono-pureWhite uppercase laser-glow-text whitespace-nowrap transition-all duration-700">
-          {STRINGS.teaser.brandTitle}
-        </h1>
+        {/* Industrial Telemetry Ribbon */}
+        <TelemetryBar />
 
-        <p className="mt-6 sm:mt-8 font-mono text-xs sm:text-sm md:text-base tracking-[0.35em] sm:tracking-[0.55em] text-ls-mono-silver uppercase opacity-85 animate-pulse">
-          {STRINGS.teaser.subtitle}
-        </p>
+        {/* Event Dossier & Interactive Ticketing Matrix */}
+        <EventsSection event={DEFAULT_EVENT} />
 
-        {/* Priority Waitlist Transmission Gateway */}
-        <WaitlistForm />
-      </div>
-    </main>
+        {/* Industrial Artist Roster Ledger */}
+        <LineupLedger
+          artists={DEFAULT_EVENT.artists}
+          onTicketClick={handleTicketClick}
+        />
+
+        {/* Limited Apparel & Merch Capsule */}
+        <SmallRuns />
+
+        {/* Direct-Flash Warehouse Photography Gallery */}
+        <GallerySection />
+
+        {/* Mandatory House Protocols & Etiquette */}
+        <ProtocolsSection />
+      </main>
+
+      {/* Industrial Footer with Community Dispatch Channel */}
+      <Footer />
+    </div>
   );
 };
 
 export default App;
-

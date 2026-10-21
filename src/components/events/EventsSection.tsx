@@ -4,9 +4,6 @@ import type { EventEdition } from '@/types/event.types';
 import { useCountdown } from '@/hooks/useCountdown';
 import { WireBadge } from '@/components/common/WireBadge';
 import { TicketMatrix } from '@/components/tickets/TicketMatrix';
-import { CyberSigil } from '@/components/common/CyberSigil';
-import { SigilDivider } from '@/components/common/SigilDivider';
-import { LaserTunnel } from '@/components/common/LaserTunnel';
 
 export interface EventsSectionProps {
   event: EventEdition;
@@ -14,12 +11,15 @@ export interface EventsSectionProps {
 
 /**
  * EventsSection Component
- * Reconstructs the signature "FINAL INFO" event flyer aesthetic from the reference Instagram feed:
+ * Reconstructs the signature "FINAL INFO" event flyer aesthetic for Chapter 01:
  * - Direct-flash dark rave backdrop
  * - Industrial house rules ledger
  * - Wireframe [ 92% SOLD OUT ] badge
- * - Laser pillars and multi-tier ticketing machinery
- * Zero hardcoded color literals.
+ * - Multi-tier ticketing machinery
+ * Zero sigil stars, zero pulsing dots, zero hardcoded color literals.
+ *
+ * @param {EventsSectionProps} props - Event edition metadata and ticketing configurations.
+ * @returns {JSX.Element} Rendered split events and ticketing section.
  */
 export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
   const countdown = useCountdown(event.eventDate);
@@ -32,24 +32,21 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
   ];
 
   return (
-    <section id="events" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-      <SigilDivider label={STRINGS.eventSection.sectionPreTitle} className="mb-12" />
-
+    <section id="events" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 pb-6 border-b border-ls-mono-hairline">
         <div className="relative">
           <div className="flex items-center gap-2 mb-2">
-            <CyberSigil variant="blade-cross" size={18} glow />
             <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
               {STRINGS.eventSection.sectionPreTitle}
             </span>
           </div>
-          <h2 className="font-rave text-4xl sm:text-7xl font-black uppercase tracking-tight text-ls-mono-pureWhite">
+          <h2 className="font-editorial text-4xl sm:text-7xl font-black uppercase tracking-tight text-ls-mono-pureWhite">
             {event.title}
           </h2>
         </div>
         <div className="flex items-center gap-3">
-          <WireBadge variant="cyan" pulse>
+          <WireBadge variant="cyan">
             {STRINGS.eventSection.upcomingBadge}
           </WireBadge>
         </div>
@@ -60,11 +57,6 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
         {/* Left Column: Authentic "FINAL INFO" Flyer Chassis */}
         <div className="lg:col-span-5 relative group">
           <div className="relative bg-ls-void-abyss border border-ls-blue-electric/40 cyber-cut p-1 shadow-laser-subtle group-hover:border-ls-blue-laserCyan transition-all duration-500 overflow-hidden">
-            {/* Top-Right Thorny Corner Sigil */}
-            <div className="absolute top-2 right-2 z-20 pointer-events-none">
-              <CyberSigil variant="corner-thorn" size={36} glow />
-            </div>
-
             {/* Poster Imagery with Dark Haze */}
             <div className="relative aspect-[4/5] overflow-hidden cyber-cut bg-ls-void-pure">
               <img
@@ -85,7 +77,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
               {/* "FINAL INFO" Overlay Flyer Content Directly Mirroring Reference Post */}
               <div className="absolute inset-0 p-6 flex flex-col justify-between z-10 select-none">
                 <div>
-                  <h3 className="font-rave text-3xl sm:text-4xl font-black uppercase text-ls-blue-laserCyan laser-glow-text tracking-wide mb-4">
+                  <h3 className="font-editorial text-3xl sm:text-4xl font-black uppercase text-ls-blue-laserCyan laser-glow-text tracking-wide mb-4">
                     {STRINGS.eventSection.finalInfoTitle}
                   </h3>
 
@@ -102,10 +94,10 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
 
                 {/* 92% Sold Out Wireframe Tag */}
                 <div className="pt-4 flex items-center justify-between border-t border-ls-blue-electric/30">
-                  <span className="font-rave text-2xl font-black text-ls-mono-pureWhite tracking-wide">
+                  <span className="font-editorial text-2xl font-black text-ls-mono-pureWhite tracking-wide">
                     {STRINGS.tickets.capacityAlertBadge}
                   </span>
-                  <WireBadge variant="cyan" pulse>
+                  <WireBadge variant="cyan">
                     {STRINGS.meta.timestampStamp}
                   </WireBadge>
                 </div>
@@ -129,19 +121,14 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
 
         {/* Right Column: Doors Countdown & Ticket Reservation Engine */}
         <div className="lg:col-span-7 flex flex-col gap-8 relative">
-          {/* Vertical Laser Light Pillars Behind Matrix */}
-          <LaserTunnel mode="pillars" className="opacity-20" />
-
           {/* Cyber Countdown Monolith */}
           <div className="p-6 sm:p-7 bg-ls-void-surface border border-ls-mono-hairline cyber-cut relative shadow-laser-subtle z-10">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <CyberSigil variant="blade-cross" size={14} glow />
                 <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
                   {STRINGS.eventSection.doorsOpenNotice}
                 </span>
               </div>
-              <span className="w-2 h-2 rounded-full bg-ls-blue-laserCyan animate-ping" />
             </div>
 
             <div className="grid grid-cols-4 gap-3 sm:gap-4">
@@ -150,8 +137,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
                   key={unit.label}
                   className="p-3.5 sm:p-5 bg-ls-void-pure border border-ls-mono-hairline cyber-cut-sm flex flex-col items-center justify-center text-center relative group hover:border-ls-blue-laserCyan transition-colors"
                 >
-                  <span className="absolute top-1 left-1 w-1.5 h-1.5 bg-ls-blue-laserCyan opacity-80" />
-                  <span className="font-rave text-3xl sm:text-5xl font-black tracking-tight text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
+                  <span className="font-editorial text-3xl sm:text-5xl font-black tracking-tight text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
                     {unit.value}
                   </span>
                   <span className="font-mono text-[10px] sm:text-[11px] tracking-widest text-ls-mono-silver uppercase mt-1">

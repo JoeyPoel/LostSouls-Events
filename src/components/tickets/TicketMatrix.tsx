@@ -4,7 +4,6 @@ import type { TicketTier } from '@/types/ticket.types';
 import { useTicketEngine } from '@/hooks/useTicketEngine';
 import { GlowButton } from '@/components/common/GlowButton';
 import { WireBadge } from '@/components/common/WireBadge';
-import { CyberSigil } from '@/components/common/CyberSigil';
 
 export interface TicketMatrixProps {
   eventId: string;
@@ -52,12 +51,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
   if (status === 'CONFIRMED' && confirmedOrderNumber) {
     return (
       <div className="p-7 sm:p-9 bg-ls-void-surface border border-ls-blue-laserCyan cyber-cut shadow-laser-intense relative">
-        <div className="absolute top-3 right-3 pointer-events-none">
-          <CyberSigil variant="barbed-cluster" size={60} glow />
-        </div>
-
         <div className="flex items-center gap-3 mb-4">
-          <span className="w-2.5 h-2.5 bg-ls-blue-laserCyan animate-ping" />
           <h4 className="font-mono text-base font-bold tracking-[0.25em] text-ls-mono-pureWhite uppercase">
             {STRINGS.tickets.orderSuccess}
           </h4>
@@ -85,19 +79,14 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
 
   return (
     <div className="p-6 sm:p-8 bg-ls-void-surface border border-ls-mono-hairline cyber-cut relative shadow-laser-subtle">
-      {/* Corner Cyber Spikes */}
-      <div className="absolute top-2 left-2 pointer-events-none">
-        <CyberSigil variant="blade-cross" size={16} glow />
-      </div>
-
       {/* Matrix Header */}
       <div className="flex items-center justify-between pb-4 mb-6 border-b border-ls-mono-hairline">
-        <div className="flex items-center gap-3 pl-4">
+        <div className="flex items-center gap-3 pl-2">
           <h3 className="font-mono text-sm sm:text-base font-bold tracking-[0.25em] uppercase text-ls-mono-pureWhite">
             {STRINGS.tickets.headerTitle}
           </h3>
         </div>
-        <WireBadge variant="cyan" pulse>
+        <WireBadge variant="cyan">
           {STRINGS.tickets.capacityAlertBadge}
         </WireBadge>
       </div>

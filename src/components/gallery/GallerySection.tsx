@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { STRINGS } from '@/constants/strings';
-import { CyberSigil } from '@/components/common/CyberSigil';
-import { SigilDivider } from '@/components/common/SigilDivider';
 
 interface GalleryPost {
   id: string;
@@ -28,14 +26,14 @@ const INSTAGRAM_POSTS: GalleryPost[] = [
     type: 'aftermovie',
     title: 'AFTERMOVIE TRANSMISSION',
     image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop',
-    timestamp: '05-09-2026 // NOW&WOW',
+    timestamp: '05-09-2026 // NETHERLANDS',
     tag: 'SUB-VOID // 160 BPM',
     badge: 'PLAY REEL ▶',
   },
   {
     id: 'post-03',
     type: 'stage',
-    title: 'TOFFLER MAIN LASER RIG',
+    title: 'MAIN LASER RIG',
     image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop',
     timestamp: '14.11.2026 // 03:15',
     tag: 'V-TRUSS LIGHT ARRAY',
@@ -46,7 +44,7 @@ const INSTAGRAM_POSTS: GalleryPost[] = [
     type: 'portrait',
     title: 'DIRECT FLASH ARTIST DOSSIER',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop',
-    timestamp: '05-09-2026 // ROTTERDAM',
+    timestamp: '05-09-2026 // NETHERLANDS',
     tag: 'STREETWEAR // OBSIDIAN',
     badge: 'RESIDENT',
   },
@@ -80,19 +78,16 @@ export const GallerySection: React.FC = () => {
   const [activePost, setActivePost] = useState<GalleryPost | null>(null);
 
   return (
-    <section id="gallery" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-      <SigilDivider label={STRINGS.gallery.preTitle} className="mb-12" />
-
+    <section id="gallery" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 pb-6 border-b border-ls-mono-hairline">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <CyberSigil variant="blade-cross" size={18} glow />
             <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
               {STRINGS.gallery.preTitle}
             </span>
           </div>
-          <h2 className="font-rave text-4xl sm:text-7xl font-black uppercase tracking-tight text-ls-mono-pureWhite">
+          <h2 className="font-editorial text-4xl sm:text-7xl font-black uppercase tracking-tight text-ls-mono-pureWhite">
             {STRINGS.gallery.title}
           </h2>
         </div>
@@ -115,11 +110,6 @@ export const GallerySection: React.FC = () => {
               <span className="font-mono text-[9px] tracking-widest text-ls-mono-pureWhite px-2.5 py-1 bg-ls-void-pure/85 border border-ls-blue-laserCyan/50 cyber-cut-sm uppercase">
                 {post.badge}
               </span>
-            </div>
-
-            {/* Corner Thorn */}
-            <div className="absolute top-2 right-2 z-20 pointer-events-none">
-              <CyberSigil variant="corner-thorn" size={28} glow />
             </div>
 
             {/* Post Image Container */}

@@ -2,7 +2,6 @@ import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import type { Artist } from '@/types/event.types';
 import { GlowButton } from '@/components/common/GlowButton';
-import { LaserTunnel } from '@/components/common/LaserTunnel';
 
 export interface LineupLedgerProps {
   artists: Artist[];
@@ -11,7 +10,7 @@ export interface LineupLedgerProps {
 
 /**
  * LineupLedger Component
- * Implements the signature split stage layout matching reference image 4:
+ * Implements the signature split stage layout matching reference image:
  * - Left column: "MAIN STAGE" headline with precision numbered roster ledger (01..06)
  * - Right column: Sticky ticket reservation summary box with pricing breakdown & radiant CTA
  * Zero hardcoded color literals.
@@ -40,9 +39,6 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
 
   return (
     <section id="lineup" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
-      {/* Horizontal laser scan beam cutting through haze */}
-      <LaserTunnel mode="horizontal-scan" />
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         {/* Left Column: MAIN STAGE Headline and Numbered Ledger */}
         <div className="lg:col-span-8">

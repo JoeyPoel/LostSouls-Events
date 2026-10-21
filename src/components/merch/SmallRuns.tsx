@@ -1,7 +1,6 @@
 import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import { GlowButton } from '@/components/common/GlowButton';
-import { CyberSigil } from '@/components/common/CyberSigil';
 
 export interface SmallRunsProps {
   onMerchClick?: () => void;
@@ -9,10 +8,10 @@ export interface SmallRunsProps {
 
 /**
  * SmallRuns Component
- * Limited apparel and capsule showcase directly modeled after reference image 5:
+ * Limited apparel and capsule showcase:
  * - Left column: "SMALL RUNS." editorial headline, collective manifesto, and merchandise CTA
  * - Right column: 3 tall-cut vertical showcase frames (T-Shirt, Artwork/Hoodie, Custom Cap)
- * Featuring dark industrial textures and cyber-tribal liquid blue/chrome screenprints.
+ * Featuring dark industrial textures and cyber screenprints.
  * Zero hardcoded color literals.
  *
  * @param {SmallRunsProps} props - Component properties with optional merch interaction trigger.
@@ -53,7 +52,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
 
         {/* Right Column: 3 Vertical Tall-Cut Apparel Showcase Cards */}
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {STRINGS.merch.items.map((item, idx) => (
+          {STRINGS.merch.items.map((item) => (
             <article
               key={item.id}
               className="group flex flex-col bg-ls-void-abyss border border-ls-mono-hairline hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden"
@@ -74,18 +73,6 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
                       'linear-gradient(to top, var(--ls-color-void-pure) 0%, rgba(2, 6, 17, 0.4) 60%, rgba(0, 68, 255, 0.25) 100%)',
                   }}
                 />
-
-                {/* Cyber-Tribal Liquid Graphic Overlay for T-Shirt and Artwork */}
-                {idx === 0 && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-500">
-                    <CyberSigil variant="barbed-cluster" size={170} glow />
-                  </div>
-                )}
-                {idx === 1 && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-500">
-                    <CyberSigil variant="blade-cross" size={160} glow />
-                  </div>
-                )}
               </div>
 
               {/* Bottom Spec Label */}

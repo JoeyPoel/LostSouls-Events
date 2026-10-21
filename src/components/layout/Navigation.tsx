@@ -1,30 +1,24 @@
 import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import { GlowButton } from '@/components/common/GlowButton';
-import { CyberSigil } from '@/components/common/CyberSigil';
 
 export interface NavigationProps {
   onTicketClick: () => void;
-  isAudioPlaying: boolean;
-  onToggleAudio: () => void;
 }
 
 /**
  * Navigation Component
- * Header navigation bar modeled after the dark underground reference:
- * - Brand logo with cyber-tribal emblem
- * - Centered navigation links (Home, Tickets, Lineup, Chapters, Merch, Info)
- * - 154 BPM Audio Ambience toggle & Radiant Ticket CTA
+ * Header navigation bar in the clean teaser aesthetic:
+ * - Brand logo: "LØST SØULS" in editorial serif with laser glow
+ * - Location telemetry: NETHERLANDS
+ * - Navigation links: Home, Events, Lineup, Merch, Info, Community
+ * - Radiant Ticket CTA
  * Zero hardcoded color literals.
  *
- * @param {NavigationProps} props - Component properties for ticket navigation and audio control.
+ * @param {NavigationProps} props - Component properties for ticket navigation.
  * @returns {JSX.Element} Rendered header navigation bar.
  */
-export const Navigation: React.FC<NavigationProps> = ({
-  onTicketClick,
-  isAudioPlaying,
-  onToggleAudio,
-}) => {
+export const Navigation: React.FC<NavigationProps> = ({ onTicketClick }) => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-ls-mono-hairline bg-ls-void-pure/90 backdrop-blur-md transition-all select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
@@ -33,18 +27,15 @@ export const Navigation: React.FC<NavigationProps> = ({
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-3 group cursor-pointer focus:outline-none text-left"
+            className="flex flex-col group cursor-pointer focus:outline-none text-left"
             id="nav-brand"
           >
-            <CyberSigil variant="blade-cross" size={24} glow />
-            <div className="flex flex-col">
-              <span className="font-editorial font-black tracking-wider text-xl sm:text-2xl text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
-                {STRINGS.meta.brandName}
-              </span>
-              <span className="font-mono text-[9px] tracking-widest text-ls-mono-muted">
-                {STRINGS.meta.cityCoordinates}
-              </span>
-            </div>
+            <span className="font-editorial font-bold tracking-[0.14em] text-xl sm:text-2xl text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan group-hover:laser-glow-text transition-all duration-300">
+              {STRINGS.teaser.brandTitle}
+            </span>
+            <span className="font-mono text-[9px] tracking-[0.25em] text-ls-mono-muted">
+              {STRINGS.meta.cityCoordinates}
+            </span>
           </button>
         </div>
 
@@ -60,19 +51,19 @@ export const Navigation: React.FC<NavigationProps> = ({
           </button>
           <button
             type="button"
+            onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+            className="hover:text-ls-blue-laserCyan transition-colors cursor-pointer py-1 border-b border-transparent hover:border-ls-blue-laserCyan"
+            id="nav-link-events"
+          >
+            {STRINGS.navigation.events}
+          </button>
+          <button
+            type="button"
             onClick={() => document.getElementById('lineup')?.scrollIntoView({ behavior: 'smooth' })}
             className="hover:text-ls-blue-laserCyan transition-colors cursor-pointer py-1 border-b border-transparent hover:border-ls-blue-laserCyan"
             id="nav-link-lineup"
           >
             {STRINGS.navigation.lineup}
-          </button>
-          <button
-            type="button"
-            onClick={() => document.getElementById('chapters')?.scrollIntoView({ behavior: 'smooth' })}
-            className="hover:text-ls-blue-laserCyan transition-colors cursor-pointer py-1 border-b border-transparent hover:border-ls-blue-laserCyan"
-            id="nav-link-chapters"
-          >
-            {STRINGS.navigation.chapters}
           </button>
           <button
             type="button"
@@ -100,25 +91,8 @@ export const Navigation: React.FC<NavigationProps> = ({
           </button>
         </nav>
 
-        {/* Audio Ambience & Primary Ticket Trigger */}
+        {/* Primary Ticket Trigger */}
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={onToggleAudio}
-            id="audio-ambience-toggle"
-            className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 font-mono text-[10px] tracking-widest uppercase border border-ls-mono-hairline hover:border-ls-blue-laserCyan hover:text-ls-blue-laserCyan text-ls-mono-silver transition-all"
-            title={isAudioPlaying ? STRINGS.meta.pauseAmbience : STRINGS.meta.playAmbience}
-          >
-            <span
-              className={`w-1.5 h-1.5 rounded-full ${
-                isAudioPlaying
-                  ? 'bg-ls-blue-laserCyan animate-ping'
-                  : 'bg-ls-mono-muted'
-              }`}
-            />
-            <span>{isAudioPlaying ? STRINGS.meta.audioActive : STRINGS.meta.audioMuted}</span>
-          </button>
-
           <GlowButton
             variant="primary"
             onClick={onTicketClick}
