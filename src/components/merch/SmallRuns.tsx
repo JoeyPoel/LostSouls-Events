@@ -55,7 +55,7 @@ export const SmallRuns: React.FC<SmallRunsProps> = ({ onMerchClick }) => {
           {STRINGS.merch.items.map((item) => (
             <article
               key={item.id}
-              className="group flex flex-col bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden backdrop-blur-sm"
+              className="group flex flex-col bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden backdrop-blur-sm"
             >
               {/* Tall Vertical Image Container */}
               <div className="relative aspect-[9/16] overflow-hidden bg-ls-void-pure">

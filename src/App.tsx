@@ -4,6 +4,7 @@ import { LivingBlueGlow } from '@/components/common/LivingBlueGlow';
 import { Navigation } from '@/components/layout/Navigation';
 import { HeroSection } from '@/components/hero/HeroSection';
 import { TelemetryBar } from '@/components/layout/TelemetryBar';
+import { AboutSection } from '@/components/about/AboutSection';
 import { EventsSection } from '@/components/events/EventsSection';
 import { LineupLedger } from '@/components/lineup/LineupLedger';
 import { SmallRuns } from '@/components/merch/SmallRuns';
@@ -89,6 +90,9 @@ export const App: React.FC = () => {
 
         {/* Industrial Telemetry Ribbon */}
         <TelemetryBar />
+
+        {/* Community Driven Raves & Emerging Artist Incubation Manifesto */}
+        <AboutSection />
 
         {/* Event Dossier & Interactive Ticketing Matrix */}
         <EventsSection event={DEFAULT_EVENT} />

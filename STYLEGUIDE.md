@@ -63,13 +63,13 @@ All colors are strictly centralized in `src/config/theme.ts`. Never hardcode raw
   ```
 
 ### Cards & Panels
-- **Container**: `rounded-3xl` glass container with `bg-ls-void-abyss/60 border border-ls-mono-hairline/60 backdrop-blur-sm shadow-laser-subtle`.
-- **Inner Units**: `rounded-2xl` with soft translucent border (`border-white/[0.05]`).
+- **Container**: Raw, sharp monolithic glass container (`rounded-none`) with `bg-ls-void-abyss/60 border border-ls-mono-hairline/60 backdrop-blur-sm shadow-laser-subtle`.
+- **Inner Units**: Raw sharp units (`rounded-none`) with soft translucent border (`border-white/[0.05]`).
 - **No Line Slicing**: Avoid placing harsh `border-t` or `border-b` lines between photos and text inside a card; let elements flow seamlessly.
 
 ### Lists & Rosters (`LineupLedger.tsx`)
 - **No Spreadsheet Grids**: Avoid `divide-y` or `border-y` on tables.
-- **Roster Items**: Wrapped in soft floating cards (`rounded-2xl bg-ls-void-abyss/40 border border-white/[0.04] hover:border-ls-blue-laserCyan/40 hover:bg-ls-void-abyss/80 transition-all duration-300`).
+- **Roster Items**: Wrapped in raw monolithic cards (`rounded-none bg-ls-void-abyss/40 border border-white/[0.04] hover:border-ls-blue-laserCyan/40 hover:bg-ls-void-abyss/80 transition-all duration-300`).
 
 ### Badges (`WireBadge.tsx`)
 - **Format**: Pill-shaped `rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.2em] uppercase`.

@@ -46,8 +46,8 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
             {event.title}
           </h2>
         </div>
-        <div className="flex items-center gap-3">
-          <WireBadge variant="cyan">
+        <div className="flex items-center gap-3 shrink-0">
+          <WireBadge variant="cyan" className="whitespace-nowrap shrink-0">
             {STRINGS.eventSection.upcomingBadge}
           </WireBadge>
         </div>
@@ -57,9 +57,9 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         {/* Left Column: Authentic "FINAL INFO" Flyer Chassis */}
         <div className="lg:col-span-5 relative group">
-          <div className="relative bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl p-2 shadow-laser-subtle group-hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden backdrop-blur-sm">
+          <div className="relative bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none p-2 shadow-laser-subtle group-hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden backdrop-blur-sm">
             {/* Poster Imagery with Dark Haze */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ls-void-pure">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-none bg-ls-void-pure">
               <img
                 src={event.heroImage}
                 alt={event.title}
@@ -93,11 +93,11 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
                 </div>
 
                 {/* 92% Sold Out Wireframe Tag */}
-                <div className="pt-4 flex items-center justify-between border-t border-ls-mono-hairline/40">
-                  <span className="font-editorial text-2xl font-black text-ls-mono-pureWhite tracking-wide">
+                <div className="pt-4 flex flex-wrap items-center justify-between gap-3 border-t border-ls-mono-hairline/40">
+                  <span className="font-editorial text-xl sm:text-2xl font-black text-ls-mono-pureWhite tracking-wide whitespace-nowrap shrink-0">
                     {STRINGS.tickets.capacityAlertBadge}
                   </span>
-                  <WireBadge variant="cyan">
+                  <WireBadge variant="cyan" className="text-[9px] sm:text-[10px] tracking-[0.12em] whitespace-nowrap shrink-0">
                     {STRINGS.meta.timestampStamp}
                   </WireBadge>
                 </div>
@@ -122,7 +122,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
         {/* Right Column: Doors Countdown & Ticket Reservation Engine */}
         <div className="lg:col-span-7 flex flex-col gap-8 relative">
           {/* Clean Countdown Card */}
-          <div className="p-6 sm:p-8 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl relative shadow-laser-subtle backdrop-blur-sm z-10">
+          <div className="p-6 sm:p-8 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none relative shadow-laser-subtle backdrop-blur-sm z-10">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
@@ -135,7 +135,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
               {countdownUnits.map((unit) => (
                 <div
                   key={unit.label}
-                  className="p-4 sm:p-6 bg-ls-void-pure/40 border border-white/[0.05] rounded-2xl flex flex-col items-center justify-center text-center relative group hover:border-ls-blue-laserCyan/40 transition-all duration-300"
+                  className="p-4 sm:p-6 bg-ls-void-pure/40 border border-white/[0.05] rounded-none flex flex-col items-center justify-center text-center relative group hover:border-ls-blue-laserCyan/40 transition-all duration-300"
                 >
                   <span className="font-editorial text-3xl sm:text-5xl font-black tracking-tight text-ls-blue-iceStrobe group-hover:text-ls-blue-laserCyan transition-colors">
                     {unit.value}

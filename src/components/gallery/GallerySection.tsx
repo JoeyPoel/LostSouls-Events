@@ -104,7 +104,7 @@ export const GallerySection: React.FC = () => {
           <div
             key={post.id}
             onClick={() => setActivePost(post)}
-            className="group cursor-pointer bg-ls-void-abyss/60 border border-ls-mono-hairline/60 hover:border-ls-blue-laserCyan/60 rounded-3xl transition-all duration-500 relative overflow-hidden shadow-laser-subtle backdrop-blur-sm"
+            className="group cursor-pointer bg-ls-void-abyss/60 border border-ls-mono-hairline/60 hover:border-ls-blue-laserCyan/60 rounded-none transition-all duration-500 relative overflow-hidden shadow-laser-subtle backdrop-blur-sm"
           >
             {/* Top Instagram Media Tag */}
             <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2">
@@ -114,7 +114,7 @@ export const GallerySection: React.FC = () => {
             </div>
 
             {/* Post Image Container */}
-            <div className="relative aspect-square overflow-hidden bg-ls-void-pure rounded-2xl m-2">
+            <div className="relative aspect-square overflow-hidden bg-ls-void-pure rounded-none m-2">
               <img
                 src={post.image}
                 alt={post.title}
@@ -154,7 +154,7 @@ export const GallerySection: React.FC = () => {
           onClick={() => setActivePost(null)}
         >
           <div
-            className="relative max-w-lg w-full bg-ls-void-abyss/90 border border-ls-mono-hairline/60 rounded-3xl shadow-laser-subtle p-6 backdrop-blur-md"
+            className="relative max-w-lg w-full bg-ls-void-abyss/90 border border-ls-mono-hairline/60 rounded-none shadow-laser-subtle p-6 backdrop-blur-md"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/[0.06] font-mono text-xs">
@@ -170,7 +170,7 @@ export const GallerySection: React.FC = () => {
               </button>
             </div>
 
-            <div className="relative aspect-square overflow-hidden rounded-2xl bg-ls-void-pure">
+            <div className="relative aspect-square overflow-hidden rounded-none bg-ls-void-pure">
               <img
                 src={activePost.image}
                 alt={activePost.title}

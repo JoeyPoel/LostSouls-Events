@@ -13,7 +13,7 @@ export const TelemetryBar: React.FC = () => {
       aria-label="Event telemetry"
       className="w-full py-8 px-4 sm:px-6 select-none"
     >
-      <div className="max-w-5xl mx-auto bg-ls-void-abyss/40 border border-ls-mono-hairline/40 rounded-3xl py-5 px-6 sm:px-10 backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 gap-6 uppercase text-center sm:text-left shadow-laser-subtle">
+      <div className="max-w-5xl mx-auto bg-ls-void-abyss/40 border border-ls-mono-hairline/40 rounded-none py-5 px-6 sm:px-10 backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 gap-6 uppercase text-center sm:text-left shadow-laser-subtle">
         <div className="flex flex-col">
           <span className="text-[10px] tracking-[0.3em] text-ls-mono-muted mb-1">
             {STRINGS.telemetryRibbon.dateLabel}

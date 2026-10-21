@@ -50,7 +50,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
   // State view: Order Confirmed
   if (status === 'CONFIRMED' && confirmedOrderNumber) {
     return (
-      <div className="p-7 sm:p-9 bg-ls-void-abyss/80 border border-ls-mono-hairline/60 rounded-3xl shadow-laser-subtle backdrop-blur-sm relative">
+      <div className="p-7 sm:p-9 bg-ls-void-abyss/80 border border-ls-mono-hairline/60 rounded-none shadow-laser-subtle backdrop-blur-sm relative">
         <div className="flex items-center gap-3 mb-4">
           <span className="w-2 h-2 rounded-full bg-ls-blue-laserCyan" />
           <h4 className="font-mono text-base font-bold tracking-[0.25em] text-ls-mono-pureWhite uppercase">
@@ -58,7 +58,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
           </h4>
         </div>
 
-        <div className="my-6 p-5 bg-ls-void-pure/60 border border-ls-blue-laserCyan/30 rounded-2xl">
+        <div className="my-6 p-5 bg-ls-void-pure/60 border border-ls-blue-laserCyan/30 rounded-none">
           <p className="font-mono text-[11px] tracking-widest text-ls-mono-muted uppercase mb-1">
             {STRINGS.tickets.orderNumberLabel}
           </p>
@@ -79,7 +79,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
   }
 
   return (
-    <div className="p-6 sm:p-8 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl relative shadow-laser-subtle backdrop-blur-sm">
+    <div className="p-6 sm:p-8 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none relative shadow-laser-subtle backdrop-blur-sm">
       {/* Matrix Header */}
       <div className="flex items-center justify-between pb-4 mb-6 border-b border-ls-mono-hairline/40">
         <div className="flex items-center gap-3 pl-2">
@@ -102,7 +102,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
           return (
             <div
               key={tier.id}
-              className={`p-4 sm:p-5 border rounded-2xl transition-all duration-300 relative ${
+              className={`p-4 sm:p-5 border rounded-none transition-all duration-300 relative ${
                 isSoldOut
                   ? 'border-ls-mono-dark/50 bg-ls-void-abyss/30 opacity-40'
                   : selectedQty > 0
@@ -146,7 +146,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
                       {STRINGS.tickets.phaseSoldOut}
                     </span>
                   ) : (
-                    <div className="flex items-center border border-ls-mono-hairline/60 bg-ls-void-pure/80 rounded-full overflow-hidden">
+                    <div className="flex items-center border border-ls-mono-hairline/60 bg-ls-void-pure/80 rounded-none overflow-hidden">
                       <button
                         type="button"
                         onClick={() => decrementTier(tier.id)}
@@ -197,7 +197,7 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
             required
             disabled={status === 'PROCESSING' || totalTickets === 0}
             id="ticket-checkout-email-input"
-            className="w-full px-5 py-3.5 bg-ls-void-pure/80 border border-ls-mono-hairline/60 rounded-full text-ls-mono-pureWhite font-mono text-xs placeholder:text-ls-mono-dark focus:border-ls-blue-laserCyan focus:outline-none disabled:opacity-40 transition-colors"
+            className="w-full px-5 py-3.5 bg-ls-void-pure border border-ls-mono-hairline/60 rounded-none text-ls-mono-pureWhite font-mono text-xs placeholder:text-ls-mono-silver/60 focus:border-ls-blue-laserCyan focus:bg-ls-void-pure focus:text-ls-mono-pureWhite focus:outline-none disabled:opacity-40 transition-colors"
           />
 
           <GlowButton

@@ -101,7 +101,7 @@ export const WaitlistForm: React.FC = () => {
               }}
               placeholder={STRINGS.waitlist.placeholder}
               disabled={loading}
-              className="w-full bg-transparent text-center text-ls-mono-pureWhite placeholder:text-ls-mono-muted/70 hover:placeholder:text-ls-mono-silver/90 font-mono text-xs sm:text-sm tracking-[0.2em] lowercase focus:outline-none transition-all duration-300 disabled:opacity-40"
+              className="w-full bg-transparent text-center text-ls-mono-pureWhite placeholder:text-ls-mono-silver placeholder:opacity-90 hover:placeholder:opacity-100 font-mono text-xs sm:text-sm tracking-[0.2em] lowercase focus:outline-none transition-all duration-300 disabled:opacity-40"
               aria-label="Join the waiting list"
               required
             />

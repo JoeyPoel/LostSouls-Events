@@ -27,11 +27,11 @@ export const WireBadge: React.FC<WireBadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center px-3 py-1 font-mono text-[10px] sm:text-[11px] tracking-[0.2em] uppercase rounded-full border ${
+      className={`inline-flex items-center px-3 py-1 font-mono text-[10px] sm:text-[11px] tracking-[0.18em] uppercase rounded-full border whitespace-nowrap shrink-0 select-none ${
         variantStyles[variant]
       } ${pulse ? 'animate-pulse' : ''} ${className}`}
     >
-      <span>{children}</span>
+      <span className="whitespace-nowrap">{children}</span>
     </span>
   );
 };

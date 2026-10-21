@@ -8,7 +8,7 @@ export const STRINGS = {
   meta: {
     brandName: 'LOST SOULS',
     cityCoordinates: 'NETHERLANDS',
-    taglineTelemetry: 'DARK RESONANCE. UNBOUND MINDS.',
+    taglineTelemetry: 'COMMUNITY DRIVEN RAVES',
     editionTelemetry: 'CHAPTER 01',
     scrollPrompt: 'SCROLL TO ENTER ↓',
     pauseAmbience: 'PAUSE AMBIENCE',
@@ -37,6 +37,7 @@ export const STRINGS = {
   },
   navigation: {
     home: 'Home',
+    about: 'Manifesto',
     events: 'Events',
     tickets: 'Tickets',
     lineup: 'Lineup',
@@ -45,6 +46,32 @@ export const STRINGS = {
     info: 'Info',
     community: 'Community',
     ticketCta: 'Get Tickets ↗',
+  },
+  about: {
+    badge: 'COMMUNITY MANIFESTO',
+    headlineMain: 'FOR THE DANCEFLOOR,',
+    headlineAccent: 'NOT THE SOCIALS',
+    lead: 'We are sick of commercial raves engineered around overpriced headliners and VIP scenes. The underground lost its soul when the dancefloor became content for socials.',
+    mission: 'Lost Souls is built to bring true raves back to the community. A dark warehouse sanctuary where you can close your eyes, dance relentlessly, and completely forget everyday life. Capture your memories, but keep screens down and stay locked into the sound.',
+    launchpadTitle: 'A LAUNCHPAD FOR THE NEXT GENERATION',
+    launchpadText: 'The future of techno belongs to fearless, uncompromised artists. We dedicate our platform to young, upcoming artists and producers, giving them the mainstage sound system, the respect, and the devoted community they need to unleash their full potential.',
+    pillars: [
+      {
+        number: '01',
+        title: 'UNCOMMERCIALIZED VOID',
+        description: 'No VIP enclosures, no influencer culture. An equal, sacred space powered purely by high-pressure sound and collective energy.',
+      },
+      {
+        number: '02',
+        title: 'BE IN THE MOMENT',
+        description: 'Capture a memory, but do not spend the night behind a screen. Respect the dancers around you, stay present, and get lost in the music.',
+      },
+      {
+        number: '03',
+        title: 'PROVING GROUND',
+        description: 'A dedicated debut platform for young, emerging talents to break through and grow into their maximum artistic potential.',
+      },
+    ],
   },
   hero: {
     presents: 'LOST SOULS PRESENTS',
@@ -94,7 +121,7 @@ export const STRINGS = {
     flyerRules: [
       'DOORS OPEN: 23:00 SHARP (ENTRY UNTIL 03:00)',
       'STRICTLY 18+ PHYSICAL ID MANDATORY',
-      'NO FLASH PHOTOGRAPHY / CAMERA TAPE APPLIED',
+      'NO FLASH PHOTOGRAPHY / RECORD MINDFULLY',
       'AWARENESS TEAM ACTIVE THROUGHOUT VENUE',
       'NO VIOLENCE, NO RACISM, NO DISCRIMINATION',
     ],
@@ -195,8 +222,8 @@ export const STRINGS = {
       },
       {
         id: 'camera',
-        title: 'Camera Ethos (No Flash / Restricted)',
-        content: 'Preserve the dancefloor immersion. Phone cameras receive security tape upon entrance. Flash photography is strictly forbidden.',
+        title: 'Camera Ethos (No Flash / Be Present)',
+        content: 'Capture memories and share short clips, but avoid filming constantly. Flash photography is strictly prohibited. Respect the dancefloor and the privacy of those around you.',
       },
       {
         id: 'safety',
@@ -207,12 +234,12 @@ export const STRINGS = {
   },
   footer: {
     title: 'LOST SOULS',
-    tagline: 'Underground Electronic Movement • Strictly 140-165 BPM',
+    tagline: 'Community driven raves • Strictly 140-165 BPM',
     newsletterPrompt: 'JOIN THE INNER COMMUNITY DISPATCH',
     newsletterPlaceholder: 'Enter your email address...',
     subscribeCta: 'Subscribe ↗',
     subscribeSuccess: 'You are on the list. Check your inbox.',
-    rightsReserved: 'LØST SØULS',
+    rightsReserved: '© 2026 LØST SØULS • ALL RIGHTS RESERVED',
     coordinates: 'NETHERLANDS',
   },
 } as const;

@@ -84,15 +84,15 @@ THEME.colors = {
   `bg-ls-void-abyss/80 text-ls-blue-iceStrobe border border-ls-mono-hairline hover:border-ls-blue-laserCyan`
 
 ### Cards & Panels
-- Outer chassis: `rounded-3xl bg-ls-void-abyss/60 border border-ls-mono-hairline/60 backdrop-blur-sm shadow-laser-subtle`.
-- Inner units: `rounded-2xl bg-ls-void-pure/40 border border-white/[0.05]`.
+- Outer chassis: Raw, sharp monolithic glass slabs (`rounded-none bg-ls-void-abyss/60 border border-ls-mono-hairline/60 backdrop-blur-sm shadow-laser-subtle`).
+- Inner units & inputs: Raw sharp units (`rounded-none bg-ls-void-pure/40 border border-white/[0.05]`).
 - Content inside cards flows seamlessly without harsh internal divider lines.
 
 ### Badges (`WireBadge`)
 - Modern pill tags: `inline-flex items-center px-3 py-1 rounded-full border text-[10px] sm:text-[11px] uppercase tracking-[0.2em]`.
 
 ### Rosters & Lists
-- Format items as individual hoverable rounded cards (`rounded-2xl`) with `space-y-2.5` spacing.
+- Format items as individual hoverable raw cards (`rounded-none`) with `space-y-2.5` spacing. Never `divide-y`.
 - Avoid `divide-y` and `border-y` table fences.
 
 ---

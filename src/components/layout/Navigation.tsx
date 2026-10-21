@@ -51,6 +51,14 @@ export const Navigation: React.FC<NavigationProps> = ({ onTicketClick }) => {
           </button>
           <button
             type="button"
+            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+            className="hover:text-ls-blue-laserCyan transition-colors cursor-pointer py-1 border-b border-transparent hover:border-ls-blue-laserCyan"
+            id="nav-link-manifesto"
+          >
+            {STRINGS.navigation.about}
+          </button>
+          <button
+            type="button"
             onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
             className="hover:text-ls-blue-laserCyan transition-colors cursor-pointer py-1 border-b border-transparent hover:border-ls-blue-laserCyan"
             id="nav-link-events"

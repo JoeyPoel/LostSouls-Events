@@ -69,7 +69,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Newsletter Dispatch Box */}
-          <div className="lg:col-span-6 relative p-7 sm:p-9 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl shadow-laser-subtle backdrop-blur-sm">
+          <div className="lg:col-span-6 relative p-7 sm:p-9 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none shadow-laser-subtle backdrop-blur-sm">
             <h4 className="font-editorial text-sm sm:text-base font-bold uppercase tracking-[0.2em] text-ls-mono-pureWhite mb-2">
               {STRINGS.footer.newsletterPrompt}
             </h4>
@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
             </p>
 
             {isSubmitted ? (
-              <div className="p-4 border border-ls-blue-laserCyan bg-ls-blue-cobalt/10 text-ls-blue-laserCyan font-mono text-xs tracking-wider uppercase rounded-2xl">
+              <div className="p-4 border border-ls-blue-laserCyan bg-ls-blue-cobalt/10 text-ls-blue-laserCyan font-mono text-xs tracking-wider uppercase rounded-none">
                 {STRINGS.footer.subscribeSuccess}
               </div>
             ) : (
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
                   placeholder={STRINGS.footer.newsletterPlaceholder}
                   required
                   id="newsletter-email-input"
-                  className="flex-1 px-5 py-3.5 bg-ls-void-pure/80 border border-ls-mono-hairline/60 rounded-full text-ls-mono-pureWhite font-mono text-xs placeholder:text-ls-mono-muted/60 focus:border-ls-blue-laserCyan focus:outline-none transition-colors"
+                  className="flex-1 px-5 py-3.5 bg-ls-void-pure/80 border border-ls-mono-hairline/60 rounded-none text-ls-mono-pureWhite font-mono text-xs placeholder:text-ls-mono-muted/60 focus:border-ls-blue-laserCyan focus:outline-none transition-colors"
                 />
                 <GlowButton
                   type="submit"

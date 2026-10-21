@@ -14,7 +14,7 @@ The Lost Souls digital identity reflects the refined, atmospheric visual culture
   - No 100vw full-width horizontal dividing lines slicing across sections (`border-y` or `border-b` across the viewport).
   - No spreadsheet grid lines (`divide-y divide-white`).
   - No harsh borders slicing inside cards between photos and text.
-  - Soft, fading hairlines (`rgba(255, 255, 255, 0.08)`) and rounded cards (`rounded-3xl` chassis, `rounded-2xl` inner units).
+  - Soft, fading hairlines (`rgba(255, 255, 255, 0.08)`) with raw, sharp architectural monolithic glass slabs (`rounded-none`).
 - **Never Look Like The Matrix**:
   - No ASCII or square terminal bullets (`■`). Use round dots (`rounded-full`).
   - No brackets enclosing badges (never write `[ 92% SOLD OUT ]`; use clean `rounded-full` pill badges).
@@ -66,7 +66,7 @@ All styling is strictly governed by `src/config/theme.ts`:
 ## 4. Component Patterns
 
 - **Buttons (`GlowButton`)**: Always `rounded-full` pills. Primary buttons use the electric-to-cyan gradient with black typography (`from-ls-blue-electric via-ls-blue-laserCyan to-ls-blue-electric text-ls-void-pure font-bold shadow-[0_0_20px_rgba(0,140,255,0.45)] hover:shadow-[0_0_35px_rgba(0,140,255,0.75)]`).
-- **Cards**: `rounded-3xl` glass cards (`bg-ls-void-abyss/60 border border-ls-mono-hairline/60 backdrop-blur-sm shadow-laser-subtle`).
-- **Inner Units**: `rounded-2xl` with soft translucent border (`border-white/[0.05]`).
+- **Cards & Sections**: Raw, sharp monolithic glass panels (`rounded-none`, `bg-ls-void-abyss/60 border border-ls-mono-hairline/60 backdrop-blur-sm shadow-laser-subtle`).
+- **Inner Units & Inputs**: Raw, sharp units (`rounded-none` with soft translucent border `border-white/[0.05]`).
 - **Badges (`WireBadge`)**: Pill tags with `rounded-full px-3 py-1 text-[10px] sm:text-[11px] uppercase tracking-[0.2em]`.
-- **Lists / Rosters**: Floating rounded hover cards (`rounded-2xl`) with `space-y-2.5` spacing. Never `divide-y`.
+- **Lists / Rosters**: Floating raw hover cards (`rounded-none`) with `space-y-2.5` spacing. Never `divide-y`.

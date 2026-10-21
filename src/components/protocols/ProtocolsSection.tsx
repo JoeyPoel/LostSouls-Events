@@ -14,7 +14,7 @@ import { useAccordion } from '@/hooks/useAccordion';
 export const ProtocolsSection: React.FC = () => {
   const { isOpen, toggle } = useAccordion({
     allowMultiple: true,
-    defaultOpenId: 'age',
+    defaultOpenId: null,
   });
 
   return (
@@ -44,7 +44,7 @@ export const ProtocolsSection: React.FC = () => {
           return (
             <div
               key={rule.id}
-              className={`w-full border rounded-2xl transition-all duration-300 bg-ls-void-abyss/60 backdrop-blur-sm relative overflow-hidden ${
+              className={`w-full border rounded-none transition-all duration-300 bg-ls-void-abyss/60 backdrop-blur-sm relative overflow-hidden ${
                 active
                   ? 'border-ls-blue-laserCyan/80 shadow-laser-subtle'
                   : 'border-ls-mono-hairline/60 hover:border-ls-blue-laserCyan/50'

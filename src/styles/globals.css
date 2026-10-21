@@ -116,16 +116,13 @@
   border-radius: 0.75rem;
 }
 
-/* Liquid Mercury Chrome Typography */
-.liquid-chrome-text {
-  background: linear-gradient(
-    180deg,
-    var(--ls-color-mono-pureWhite) 0%,
-    var(--ls-color-blue-laserCyan) 20%,
-    var(--ls-color-blue-electric) 45%,
-    var(--ls-color-mono-pureWhite) 70%,
-    var(--ls-color-mono-muted) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Prevent Browser Autofill from turning inputs grey */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--ls-color-void-pure) inset !important;
+  -webkit-text-fill-color: var(--ls-color-mono-pureWhite) !important;
+  caret-color: var(--ls-color-mono-pureWhite) !important;
+  transition: background-color 5000s ease-in-out 0s;
 }

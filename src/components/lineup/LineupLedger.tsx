@@ -68,7 +68,7 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
               return (
                 <div
                   key={artist.id}
-                  className="p-4 sm:p-5 rounded-2xl bg-ls-void-abyss/40 border border-white/[0.04] hover:border-ls-blue-laserCyan/40 hover:bg-ls-void-abyss/80 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 group transition-all duration-300"
+                  className="p-4 sm:p-5 rounded-none bg-ls-void-abyss/40 border border-white/[0.04] hover:border-ls-blue-laserCyan/40 hover:bg-ls-void-abyss/80 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 group transition-all duration-300"
                 >
                   {/* Left: Index & Artist Name */}
                   <div className="flex items-baseline gap-5 sm:gap-7">
@@ -92,7 +92,7 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
 
         {/* Right Column: Sticky Ticket Telemetry Box */}
         <div className="lg:col-span-4 sticky top-24">
-          <div className="bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-laser-subtle backdrop-blur-sm relative overflow-hidden">
+          <div className="bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none p-6 sm:p-8 flex flex-col justify-between shadow-laser-subtle backdrop-blur-sm relative overflow-hidden">
             {/* Top Border Cyan Laser Accent */}
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-ls-blue-laserCyan to-transparent opacity-80" />
 
