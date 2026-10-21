@@ -26,6 +26,14 @@
       "destination": "/api/$1"
     },
     {
+      "source": "/test",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/test/(.*)",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

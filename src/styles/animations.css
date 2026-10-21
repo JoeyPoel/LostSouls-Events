@@ -110,6 +110,22 @@
   animation: shapeshiftGlow 14s ease-in-out infinite;
 }
 
+@keyframes glowBreathe {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: scale3d(1.07, 1.04, 1);
+    opacity: 0.30;
+  }
+}
+
+.animate-glow-breathe {
+  will-change: transform, opacity;
+  animation: glowBreathe 9s ease-in-out infinite;
+}
+
 @keyframes sigilSpinSlow {
   0% {
     transform: rotate(0deg);

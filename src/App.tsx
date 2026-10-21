@@ -39,7 +39,11 @@ export const App: React.FC = () => {
   }, []);
 
   // Public teaser at root (/); full first-event site at /test
-  const isTestRoute = pathname.startsWith('/test');
+  const isTestRoute =
+    pathname.startsWith('/test') ||
+    pathname.includes('/test') ||
+    (typeof window !== 'undefined' &&
+      (window.location.search.includes('test') || window.location.hash.includes('test')));
 
   if (!isTestRoute) {
     return <TeaserView />;

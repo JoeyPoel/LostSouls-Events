@@ -2,15 +2,14 @@ import React from 'react';
 import { STRINGS } from '@/constants/strings';
 import { Noise } from '@/components/common/Noise';
 import { WaitlistForm } from '@/components/teaser/WaitlistForm';
-import { LivingBlueGlow } from '@/components/common/LivingBlueGlow';
 
 /**
  * TeaserView Component
- * Renders the minimalist public teaser void for Lost Souls displayed at root (/):
+ * Renders the minimalist public teaser void displayed at the normal root domain (/):
  * - Monolithic "LØST SØULS" title in editorial serif with laser text glow
+ * - Volumetric subterranean blue shadow centered directly behind the centerpiece
  * - Cryptic announcement: "SOMETHING BIG IS COMING..."
  * - Seamless floating waitlist transmission gateway
- * - Single living blue ambient shadow at middle bottom
  * Zero hardcoded color literals.
  *
  * @returns {JSX.Element} The public teaser interface.
@@ -21,8 +20,19 @@ export const TeaserView: React.FC = () => {
       {/* Heavy Warehouse Analog Noise Overlay */}
       <Noise />
 
-      {/* Single Living Subterranean Blue Shadow at Middle Bottom */}
-      <LivingBlueGlow />
+      {/* Volumetric Subterranean Void Ambience - Centered directly behind LØST SØULS */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none flex items-center justify-center"
+      >
+        <div
+          className="w-[500px] h-[500px] sm:w-[750px] sm:h-[750px] rounded-full blur-[120px] opacity-25 animate-fog-drift"
+          style={{
+            background:
+              'radial-gradient(circle, var(--ls-color-blue-cobalt) 0%, var(--ls-color-blue-deepNavy) 50%, transparent 75%)',
+          }}
+        />
+      </div>
 
       {/* Monolithic Centerpiece */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-6xl mx-auto w-full">

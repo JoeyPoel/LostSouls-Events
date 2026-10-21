@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "prisma generate && tsc && vite build",
+    "postbuild": "node scripts/copy-test.mjs",
     "postinstall": "prisma generate",
     "test": "node --import tsx test/invariants.test.mjs",
     "preview": "vite preview",

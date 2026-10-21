@@ -1,6 +1,7 @@
 import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import fs from 'fs';
 
 // Local development API router plugin
 function localApiPlugin(): Plugin {
@@ -179,9 +180,33 @@ function localApiPlugin(): Plugin {
   };
 }
 
+// Plugin to guarantee that /test and /test.html exist as physical files in dist for Vercel/production
+function testRouteStaticPlugin(): Plugin {
+  return {
+    name: 'test-route-static-generator',
+    closeBundle() {
+      try {
+        const distDir = path.resolve(process.cwd(), 'dist');
+        const srcIndex = path.join(distDir, 'index.html');
+        if (fs.existsSync(srcIndex)) {
+          const testDir = path.join(distDir, 'test');
+          if (!fs.existsSync(testDir)) {
+            fs.mkdirSync(testDir, { recursive: true });
+          }
+          fs.copyFileSync(srcIndex, path.join(testDir, 'index.html'));
+          fs.copyFileSync(srcIndex, path.join(distDir, 'test.html'));
+          console.log('[test-route-static-generator] Generated dist/test/index.html and dist/test.html');
+        }
+      } catch (err) {
+        console.error('[test-route-static-generator] Error generating test static route:', err);
+      }
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), localApiPlugin()],
+  plugins: [react(), localApiPlugin(), testRouteStaticPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
