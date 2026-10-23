@@ -8,15 +8,19 @@ import { WireBadge } from '@/components/common/WireBadge';
 export interface TicketMatrixProps {
   eventId: string;
   tiers: TicketTier[];
+  isTest?: boolean;
 }
 
 /**
  * TicketMatrix Component
  * Cybernetic ticket allocation engine with razor-cut tier ribbons,
  * industrial counter controls, real-time totals, and serverless checkout trigger.
+ * In default production mode, gracefully renders locked allocation preview with priority waitlist prompts.
+ * In test mode, renders interactive ticket counter controls and checkout form.
  * Zero hardcoded color literals.
  */
-export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) => {
+export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers, isTest = false }) => {
+
   const [email, setEmail] = useState('');
   const {
     selections,
@@ -74,6 +78,85 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
         <GlowButton variant="secondary" onClick={resetEngine} fullWidth id="order-reset-button">
           {STRINGS.navigation.ticketCta}
         </GlowButton>
+      </div>
+    );
+  }
+
+  // Default production view: Locked allocation preview with waitlist prompt
+  if (!isTest) {
+    return (
+      <div className="p-6 sm:p-8 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none relative shadow-laser-subtle backdrop-blur-sm">
+        {/* Matrix Header */}
+        <div className="flex items-center justify-between pb-4 mb-6 border-b border-ls-mono-hairline/40">
+          <div className="flex items-center gap-3 pl-2">
+            <h3 className="font-mono text-sm sm:text-base font-bold tracking-[0.25em] uppercase text-ls-mono-pureWhite">
+              {STRINGS.tickets.headerTitle}
+            </h3>
+          </div>
+          <WireBadge variant="cyan">
+            {STRINGS.tickets.badge}
+          </WireBadge>
+        </div>
+
+        {/* Tier Matrix Rows in Locked Coming Soon State */}
+        <div className="space-y-3.5">
+          {tiers.map((tier) => (
+            <div
+              key={tier.id}
+              className="p-4 sm:p-5 border border-ls-mono-hairline/60 bg-ls-void-abyss/40 rounded-none transition-all duration-300 relative"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan" />
+                    <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-ls-mono-pureWhite">
+                      {tier.name}
+                    </span>
+                  </div>
+
+                  <div className="flex items-baseline gap-2 mt-1.5 pl-3.5">
+                    <span className="font-mono text-xs font-bold text-ls-mono-silver tracking-widest uppercase">
+                      {STRINGS.tickets.priceTba}
+                    </span>
+                    <span className="font-mono text-[10px] tracking-widest text-ls-mono-muted uppercase">
+                      • {STRINGS.tickets.serviceFeeTba}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center self-end sm:self-center">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ls-blue-laserCyan px-3 py-1 bg-ls-void-pure/80 border border-ls-blue-laserCyan/40 rounded-full">
+                    {STRINGS.tickets.tierStatus}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Waitlist Gateway Trigger */}
+        <div className="mt-8 pt-6 border-t border-ls-mono-hairline/40 flex flex-col space-y-4">
+          <p className="text-xs font-mono text-ls-mono-silver tracking-wider uppercase leading-relaxed text-center sm:text-left">
+            {STRINGS.tickets.emptyNotice}
+          </p>
+
+          <GlowButton
+            variant="primary"
+            fullWidth
+            onClick={() => {
+              const heroElement = document.getElementById('hero');
+              if (heroElement) {
+                heroElement.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            id="ticket-waitlist-btn"
+            className="py-4 text-xs font-bold uppercase tracking-widest"
+          >
+            {STRINGS.tickets.waitlistCta}
+          </GlowButton>
+        </div>
       </div>
     );
   }
@@ -225,3 +308,4 @@ export const TicketMatrix: React.FC<TicketMatrixProps> = ({ eventId, tiers }) =>
 };
 
 export default TicketMatrix;
+

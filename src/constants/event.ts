@@ -1,13 +1,80 @@
 import type { EventEdition } from '@/types/event.types';
 
 /**
- * Default event edition data representing Chapter 01: The Debut Gathering in the Netherlands.
- * Fallback dataset ensuring robust full-site presentation across all environments.
+ * Production event structure representing Chapter 01 prior to public announcement.
+ * Default event loaded on the main platform.
  */
 export const DEFAULT_EVENT: EventEdition = {
   id: 'evt-lost-souls-001',
-  slug: 'chapter-01-first-awakening',
-  title: 'CHAPTER 01: FIRST AWAKENING',
+  slug: 'chapter-01',
+  title: 'CHAPTER 01',
+  chapter: 'CHAPTER 01',
+  venue: 'TO BE ANNOUNCED',
+  city: 'TO BE ANNOUNCED',
+  eventDate: '2026-12-31T23:00:00.000Z',
+  doorsOpen: 'TO BE ANNOUNCED',
+  doorsClose: 'TO BE ANNOUNCED',
+  heroImage: '',
+  isPublished: true,
+
+  ticketTiers: [
+    {
+      id: 'prod-tier-01',
+      name: 'Community Batch',
+      priceCents: 0,
+      serviceFee: 0,
+      capacity: 0,
+      soldCount: 0,
+      status: 'RESERVED',
+      orderIndex: 1,
+      eventId: 'evt-lost-souls-001',
+    },
+    {
+      id: 'prod-tier-02',
+      name: 'Early Soul Pass',
+      priceCents: 0,
+      serviceFee: 0,
+      capacity: 0,
+      soldCount: 0,
+      status: 'RESERVED',
+      orderIndex: 2,
+      eventId: 'evt-lost-souls-001',
+    },
+    {
+      id: 'prod-tier-03',
+      name: 'Phase I Entry',
+      priceCents: 0,
+      serviceFee: 0,
+      capacity: 0,
+      soldCount: 0,
+      status: 'RESERVED',
+      orderIndex: 3,
+      eventId: 'evt-lost-souls-001',
+    },
+    {
+      id: 'prod-tier-04',
+      name: 'Final Soul Allocation',
+      priceCents: 0,
+      serviceFee: 0,
+      capacity: 0,
+      soldCount: 0,
+      status: 'RESERVED',
+      orderIndex: 4,
+      eventId: 'evt-lost-souls-001',
+    },
+  ],
+  artists: [],
+};
+
+export const PROD_EVENT: EventEdition = DEFAULT_EVENT;
+
+/**
+ * Test event edition data with mock dummy roster and active ticket phases for /test route.
+ */
+export const TEST_EVENT: EventEdition = {
+  id: 'evt-lost-souls-test-001',
+  slug: 'chapter-01',
+  title: 'CHAPTER 01',
   chapter: 'CHAPTER 01',
   venue: 'NETHERLANDS',
   city: 'NETHERLANDS',
@@ -26,7 +93,7 @@ export const DEFAULT_EVENT: EventEdition = {
       soldCount: 200,
       status: 'SOLD_OUT',
       orderIndex: 1,
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'tier-02',
@@ -37,7 +104,7 @@ export const DEFAULT_EVENT: EventEdition = {
       soldCount: 350,
       status: 'SOLD_OUT',
       orderIndex: 2,
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'tier-03',
@@ -48,7 +115,7 @@ export const DEFAULT_EVENT: EventEdition = {
       soldCount: 552, // 92% sold out
       status: 'AVAILABLE',
       orderIndex: 3,
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'tier-04',
@@ -59,7 +126,7 @@ export const DEFAULT_EVENT: EventEdition = {
       soldCount: 38,
       status: 'AVAILABLE',
       orderIndex: 4,
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
   ],
   artists: [
@@ -69,7 +136,7 @@ export const DEFAULT_EVENT: EventEdition = {
       performance: 'INDUSTRIAL / BOCHKA',
       orderIndex: 1,
       stage: 'MAIN STAGE',
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'art-02',
@@ -77,7 +144,7 @@ export const DEFAULT_EVENT: EventEdition = {
       performance: '2-HOUR HYBRID LIVE',
       orderIndex: 2,
       stage: 'MAIN STAGE',
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'art-03',
@@ -85,7 +152,7 @@ export const DEFAULT_EVENT: EventEdition = {
       performance: 'HYBRID',
       orderIndex: 3,
       stage: 'MAIN STAGE',
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'art-04',
@@ -93,7 +160,7 @@ export const DEFAULT_EVENT: EventEdition = {
       performance: 'INDUSTRIAL',
       orderIndex: 4,
       stage: 'MAIN STAGE',
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'art-05',
@@ -101,7 +168,7 @@ export const DEFAULT_EVENT: EventEdition = {
       performance: 'B2B',
       orderIndex: 5,
       stage: 'MAIN STAGE',
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
     {
       id: 'art-06',
@@ -109,7 +176,8 @@ export const DEFAULT_EVENT: EventEdition = {
       performance: 'DARK CLOSING',
       orderIndex: 6,
       stage: 'MAIN STAGE',
-      eventId: 'evt-lost-souls-001',
+      eventId: 'evt-lost-souls-test-001',
     },
   ],
 };
+

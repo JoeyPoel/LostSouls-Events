@@ -6,11 +6,12 @@ import { WaitlistForm } from '@/components/teaser/WaitlistForm';
 export interface HeroSectionProps {
   onTicketClick: () => void;
   onLineupClick: () => void;
+  isTest?: boolean;
 }
 
 /**
  * HeroSection Component
- * Renders an ultra-minimalistic, atmospheric front page for the test site (/test):
+ * Renders an ultra-minimalistic, atmospheric front page:
  * - Monolithic "LØST SØULS" editorial headline with laser text glow
  * - Cryptic subtitle: "SOMETHING BIG IS COMING..."
  * - Seamless waitlist transmission gateway
@@ -24,7 +25,11 @@ export interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onTicketClick,
   onLineupClick,
+  isTest = false,
 }) => {
+  const primaryCta = isTest ? STRINGS.test.hero.primaryCta : STRINGS.hero.primaryCta;
+  const secondaryCta = isTest ? STRINGS.test.hero.secondaryCta : STRINGS.hero.secondaryCta;
+
   return (
     <section
       id="hero"
@@ -51,7 +56,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             id="hero-buy-final-soul"
             className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest"
           >
-            {STRINGS.hero.primaryCta}
+            {primaryCta}
           </GlowButton>
 
           <GlowButton
@@ -60,10 +65,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             id="hero-view-lineup"
             className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest border border-ls-mono-hairline hover:border-ls-blue-laserCyan hover:text-ls-blue-laserCyan text-ls-mono-pureWhite bg-ls-void-abyss/80"
           >
-            {STRINGS.hero.secondaryCta}
+            {secondaryCta}
           </GlowButton>
         </div>
       </div>
+
 
       {/* Bottom Minimalist Scroll Prompt */}
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">

@@ -68,14 +68,23 @@ const INSTAGRAM_POSTS: GalleryPost[] = [
   },
 ];
 
+export interface GallerySectionProps {
+  isTest?: boolean;
+}
+
 /**
  * GallerySection Component
  * Recreates the underground techno collective's Instagram feed grid:
  * high-contrast direct flash, blue laser stage photography, merch capsule drops, and aftermovie stills.
+ * In default production mode, renders the unrevealed archive grid awaiting Chapter 01 documentation.
  * Zero hardcoded color literals.
  */
-export const GallerySection: React.FC = () => {
+export const GallerySection: React.FC<GallerySectionProps> = ({ isTest = false }) => {
   const [activePost, setActivePost] = useState<GalleryPost | null>(null);
+
+  const posts: GalleryPost[] = isTest
+    ? INSTAGRAM_POSTS
+    : (STRINGS.gallery.items as unknown as GalleryPost[]);
 
   return (
     <section id="gallery" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
@@ -93,57 +102,93 @@ export const GallerySection: React.FC = () => {
           </h2>
         </div>
 
-        <div className="font-mono text-xs tracking-widest text-ls-blue-laserCyan uppercase">
-          @LOSTSOULS.EVENTS
-        </div>
+        <a
+          href="https://instagram.com/lost.souls.events"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-xs tracking-widest text-ls-blue-laserCyan hover:text-ls-blue-iceStrobe transition-colors"
+        >
+          {STRINGS.gallery.instagramHandle}
+        </a>
       </div>
 
       {/* Instagram 3-Column Square/Portrait Feed Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {INSTAGRAM_POSTS.map((post) => (
+        {posts.map((post) => (
           <div
             key={post.id}
-            onClick={() => setActivePost(post)}
-            className="group cursor-pointer bg-ls-void-abyss/60 border border-ls-mono-hairline/60 hover:border-ls-blue-laserCyan/60 rounded-none transition-all duration-500 relative overflow-hidden shadow-laser-subtle backdrop-blur-sm"
+            onClick={() => isTest && setActivePost(post)}
+            className={`group bg-ls-void-abyss/60 border border-ls-mono-hairline/60 hover:border-ls-blue-laserCyan/60 rounded-none transition-all duration-500 relative overflow-hidden shadow-laser-subtle backdrop-blur-sm ${
+              isTest ? 'cursor-pointer' : 'cursor-default'
+            }`}
           >
             {/* Top Instagram Media Tag */}
             <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2">
               <span className="font-mono text-[9px] tracking-widest text-ls-mono-pureWhite px-3 py-1 bg-ls-void-pure/85 border border-ls-blue-laserCyan/40 rounded-full uppercase">
-                {post.badge}
+                {post.badge || 'COMING SOON'}
               </span>
             </div>
 
             {/* Post Image Container */}
-            <div className="relative aspect-square overflow-hidden bg-ls-void-pure rounded-none m-2">
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-full object-cover grayscale contrast-125 brightness-75 group-hover:scale-105 group-hover:brightness-95 transition-all duration-700"
-                loading="lazy"
-              />
-              {/* Blue Stage Laser Flood Overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-40 transition-opacity"
-                style={{
-                  background:
-                    'linear-gradient(to top, var(--ls-color-void-pure) 0%, rgba(0, 56, 184, 0.3) 60%, transparent 100%)',
-                }}
-              />
+            <div className="relative aspect-square overflow-hidden bg-ls-void-pure rounded-none m-2 flex flex-col items-center justify-center p-6">
+              {!isTest ? (
+                <>
+                  <div className="z-10 text-center flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full border border-ls-mono-hairline/60 flex items-center justify-center mb-3 group-hover:border-ls-blue-laserCyan/60 group-hover:scale-105 transition-all">
+                      <span className="w-2 h-2 rounded-full bg-ls-blue-laserCyan/60 group-hover:bg-ls-blue-laserCyan animate-pulse" />
+                    </div>
+                    <span className="font-mono text-[10px] tracking-[0.25em] text-ls-mono-silver uppercase">
+                      COMING SOON
+                    </span>
+                    <span className="font-mono text-[9px] tracking-widest text-ls-mono-muted uppercase mt-1">
+                      CHAPTER 01
+                    </span>
+                  </div>
+
+                  {/* Dark Radial Void Glow */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        'radial-gradient(circle at center, rgba(0, 68, 255, 0.12) 0%, rgba(2, 6, 17, 0.9) 75%, var(--ls-color-void-pure) 100%)',
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover grayscale contrast-125 brightness-75 group-hover:scale-105 group-hover:brightness-95 transition-all duration-700"
+                    loading="lazy"
+                  />
+                  {/* Blue Stage Laser Flood Overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-40 transition-opacity"
+                    style={{
+                      background:
+                        'linear-gradient(to top, var(--ls-color-void-pure) 0%, rgba(0, 56, 184, 0.3) 60%, transparent 100%)',
+                    }}
+                  />
+                </>
+              )}
             </div>
 
             {/* Post Footer Telemetry Stamp */}
-            <div className="p-5 bg-transparent">
-              <p className="font-rave text-base font-black tracking-wide text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors uppercase">
+            <div className="p-5 bg-transparent border-t border-ls-mono-hairline/40">
+              <p className="font-editorial text-base font-black tracking-wide text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors uppercase">
                 {post.title}
               </p>
               <div className="mt-2 flex items-center justify-between font-mono text-[10px] tracking-wider text-ls-mono-silver uppercase">
-                <span className="text-ls-blue-laserCyan">{post.timestamp}</span>
-                <span>{post.tag}</span>
+                <span className="text-ls-blue-laserCyan">{post.timestamp || 'TO BE ANNOUNCED'}</span>
+                <span>{post.tag || 'COMING SOON'}</span>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+
 
       {/* Lightbox Modal */}
       {activePost && (

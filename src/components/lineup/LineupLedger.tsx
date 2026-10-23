@@ -6,36 +6,49 @@ import { GlowButton } from '@/components/common/GlowButton';
 export interface LineupLedgerProps {
   artists: Artist[];
   onTicketClick?: () => void;
+  isTest?: boolean;
 }
 
 /**
  * LineupLedger Component
- * Implements the signature split stage layout matching reference image:
+ * Implements the signature split stage layout:
  * - Left column: "MAIN STAGE" headline with precision numbered roster ledger (01..06)
  * - Right column: Sticky ticket reservation summary box with pricing breakdown & radiant CTA
+ * In default production mode, gracefully renders unrevealed roster and allocation preview.
  * Zero hardcoded color literals.
  *
- * @param {LineupLedgerProps} props - Component properties with artists roster and ticket callback.
+ * @param {LineupLedgerProps} props - Component properties with artists roster, ticket callback, and test flag.
  * @returns {JSX.Element} Rendered split lineup and ticket summary section.
  */
-export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketClick }) => {
-  // Curated artist roster mapping to the industrial sound in the reference
-  const stageArtists = artists.length > 0 ? artists : [
-    { id: 'art-01', name: 'INDUSTRIX', performance: 'INDUSTRIAL / BOCHKA', orderIndex: 1, stage: 'MAIN STAGE', eventId: 'evt-01' },
-    { id: 'art-02', name: 'REDBATUN', performance: '2-HOUR HYBRID LIVE', orderIndex: 2, stage: 'MAIN STAGE', eventId: 'evt-01' },
-    { id: 'art-03', name: 'JAPAU', performance: 'HYBRID', orderIndex: 3, stage: 'MAIN STAGE', eventId: 'evt-01' },
-    { id: 'art-04', name: 'VENATOR', performance: 'INDUSTRIAL', orderIndex: 4, stage: 'MAIN STAGE', eventId: 'evt-01' },
-    { id: 'art-05', name: 'ØRBENYX B2B N|E|O', performance: 'B2B', orderIndex: 5, stage: 'MAIN STAGE', eventId: 'evt-01' },
-    { id: 'art-06', name: 'MORTIS B2B OUTRAGE', performance: 'DARK CLOSING', orderIndex: 6, stage: 'MAIN STAGE', eventId: 'evt-01' },
-  ];
+export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketClick, isTest = false }) => {
+  // Curated artist roster mapping or unrevealed production placeholder slots
+  const stageArtists = isTest && artists.length > 0
+    ? artists
+    : [
+        { id: 'art-01', name: 'ARTIST TO BE ANNOUNCED', performance: 'TO BE ANNOUNCED', orderIndex: 1, stage: 'MAIN STAGE', eventId: 'ch-01' },
+        { id: 'art-02', name: 'ARTIST TO BE ANNOUNCED', performance: 'TO BE ANNOUNCED', orderIndex: 2, stage: 'MAIN STAGE', eventId: 'ch-01' },
+        { id: 'art-03', name: 'ARTIST TO BE ANNOUNCED', performance: 'TO BE ANNOUNCED', orderIndex: 3, stage: 'MAIN STAGE', eventId: 'ch-01' },
+        { id: 'art-04', name: 'ARTIST TO BE ANNOUNCED', performance: 'TO BE ANNOUNCED', orderIndex: 4, stage: 'MAIN STAGE', eventId: 'ch-01' },
+        { id: 'art-05', name: 'ARTIST TO BE ANNOUNCED', performance: 'TO BE ANNOUNCED', orderIndex: 5, stage: 'MAIN STAGE', eventId: 'ch-01' },
+        { id: 'art-06', name: 'ARTIST TO BE ANNOUNCED', performance: 'TO BE ANNOUNCED', orderIndex: 6, stage: 'MAIN STAGE', eventId: 'ch-01' },
+      ];
 
-  const ticketBreakdown = [
-    { label: STRINGS.tickets.breakdownPhase, value: STRINGS.hero.activeTierName },
-    { label: STRINGS.tickets.breakdownTicket, value: '€31.15' },
-    { label: STRINGS.tickets.breakdownFee, value: '€2.85' },
-    { label: STRINGS.tickets.breakdownPrice, value: STRINGS.hero.priceDisplay },
-    { label: STRINGS.tickets.breakdownAge, value: STRINGS.telemetryRibbon.accessValue },
-  ];
+  const ticketBreakdown = isTest
+    ? [
+        { label: STRINGS.tickets.breakdownPhase, value: 'Final Soul Allocation' },
+        { label: STRINGS.tickets.breakdownTicket, value: '€31.15' },
+        { label: STRINGS.tickets.breakdownFee, value: '€2.85' },
+        { label: STRINGS.tickets.breakdownPrice, value: STRINGS.test.hero.priceDisplay },
+        { label: STRINGS.tickets.breakdownAge, value: STRINGS.telemetryRibbon.accessValue },
+      ]
+    : [
+        { label: 'Phase', value: 'Chapter 01' },
+        { label: 'Price', value: 'TO BE ANNOUNCED' },
+        { label: 'Status', value: 'TO BE ANNOUNCED' },
+        { label: 'Time', value: 'TO BE ANNOUNCED' },
+        { label: 'Location', value: 'TO BE ANNOUNCED' },
+        { label: 'Minimum Age', value: 'Strictly 18+' },
+      ];
 
   return (
     <section id="lineup" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
@@ -75,7 +88,7 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
                     <span className="font-mono text-xs tracking-[0.2em] text-ls-blue-laserCyan/70 group-hover:text-ls-blue-laserCyan transition-colors">
                       {formattedIndex}
                     </span>
-                    <span className="font-editorial text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
+                    <span className="font-editorial text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-tight text-ls-mono-pureWhite group-hover:text-ls-blue-laserCyan transition-colors">
                       {artist.name}
                     </span>
                   </div>
@@ -108,11 +121,11 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
               {/* Price Big Display */}
               <div className="mb-2">
                 <span className="font-editorial text-4xl sm:text-5xl font-black text-ls-mono-pureWhite tracking-tight">
-                  {STRINGS.hero.priceDisplay}
+                  {isTest ? STRINGS.test.tickets.priceDisplay : STRINGS.tickets.priceDisplay}
                 </span>
               </div>
               <p className="font-mono text-[10px] tracking-widest text-ls-mono-muted uppercase mb-6">
-                {STRINGS.hero.serviceFeeNotice}
+                {isTest ? STRINGS.test.tickets.serviceFeeNotice : STRINGS.tickets.serviceFeeNotice}
               </p>
 
               {/* Price Breakdown Ledger */}
@@ -133,7 +146,7 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
               id="lineup-get-final-soul"
               className="w-full py-4 text-xs font-bold uppercase tracking-widest"
             >
-              {STRINGS.hero.primaryCta}
+              {isTest ? STRINGS.test.hero.primaryCta : STRINGS.lineupLedger.cta}
             </GlowButton>
           </div>
         </div>
@@ -143,3 +156,4 @@ export const LineupLedger: React.FC<LineupLedgerProps> = ({ artists, onTicketCli
 };
 
 export default LineupLedger;
+

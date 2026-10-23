@@ -7,29 +7,32 @@ import { TicketMatrix } from '@/components/tickets/TicketMatrix';
 
 export interface EventsSectionProps {
   event: EventEdition;
+  isTest?: boolean;
 }
 
 /**
  * EventsSection Component
  * Reconstructs the signature "FINAL INFO" event flyer aesthetic for Chapter 01:
- * - Direct-flash dark rave backdrop
+ * - Direct-flash dark rave backdrop / Volumetric Void in production mode
  * - Industrial house rules ledger
- * - Wireframe [ 92% SOLD OUT ] badge
+ * - Wireframe pill badge
  * - Multi-tier ticketing machinery
  * Zero sigil stars, zero pulsing dots, zero hardcoded color literals.
  *
  * @param {EventsSectionProps} props - Event edition metadata and ticketing configurations.
  * @returns {JSX.Element} Rendered split events and ticketing section.
  */
-export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
+export const EventsSection: React.FC<EventsSectionProps> = ({ event, isTest = false }) => {
   const countdown = useCountdown(event.eventDate);
 
   const countdownUnits = [
-    { label: STRINGS.eventSection.countdownLabels.days, value: countdown.days },
-    { label: STRINGS.eventSection.countdownLabels.hours, value: countdown.hours },
-    { label: STRINGS.eventSection.countdownLabels.minutes, value: countdown.minutes },
-    { label: STRINGS.eventSection.countdownLabels.seconds, value: countdown.seconds },
+    { label: STRINGS.eventSection.countdownLabels.days, value: isTest ? countdown.days : '--' },
+    { label: STRINGS.eventSection.countdownLabels.hours, value: isTest ? countdown.hours : '--' },
+    { label: STRINGS.eventSection.countdownLabels.minutes, value: isTest ? countdown.minutes : '--' },
+    { label: STRINGS.eventSection.countdownLabels.seconds, value: isTest ? countdown.seconds : '--' },
   ];
+
+  const rulesList = STRINGS.eventSection.flyerRules;
 
   return (
     <section id="events" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative select-none">
@@ -48,7 +51,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
         </div>
         <div className="flex items-center gap-3 shrink-0">
           <WireBadge variant="cyan" className="whitespace-nowrap shrink-0">
-            {STRINGS.eventSection.upcomingBadge}
+            {isTest ? STRINGS.test.eventSection.upcomingBadge : STRINGS.eventSection.badge}
           </WireBadge>
         </div>
       </div>
@@ -60,21 +63,30 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
           <div className="relative bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none p-2 shadow-laser-subtle group-hover:border-ls-blue-laserCyan/60 transition-all duration-500 overflow-hidden backdrop-blur-sm">
             {/* Poster Imagery with Dark Haze */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-none bg-ls-void-pure">
-              <img
-                src={event.heroImage}
-                alt={event.title}
-                className="w-full h-full object-cover grayscale contrast-125 brightness-60 group-hover:scale-105 group-hover:brightness-75 transition-all duration-700"
-                loading="lazy"
-              />
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'linear-gradient(to top, var(--ls-color-void-pure) 0%, rgba(2, 6, 17, 0.6) 50%, var(--ls-color-void-pure) 100%)',
-                }}
-              />
+              {!isTest || !event.heroImage ? (
+                /* Pure Abstract Warehouse Void Chassis */
+                <div className="w-full h-full bg-gradient-to-b from-ls-void-abyss via-ls-void-surface to-ls-void-pure relative flex flex-col justify-between p-6">
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-ls-blue-cobalt/25 via-transparent to-transparent pointer-events-none" />
+                </div>
+              ) : (
+                <>
+                  <img
+                    src={event.heroImage}
+                    alt={event.title}
+                    className="w-full h-full object-cover grayscale contrast-125 brightness-60 group-hover:scale-105 group-hover:brightness-75 transition-all duration-700"
+                    loading="lazy"
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        'linear-gradient(to top, var(--ls-color-void-pure) 0%, rgba(2, 6, 17, 0.6) 50%, var(--ls-color-void-pure) 100%)',
+                    }}
+                  />
+                </>
+              )}
 
-              {/* "FINAL INFO" Overlay Flyer Content Directly Mirroring Reference Post */}
+              {/* Flyer Content Overlay */}
               <div className="absolute inset-0 p-6 flex flex-col justify-between z-10 select-none">
                 <div>
                   <h3 className="font-editorial text-3xl sm:text-4xl font-black uppercase text-ls-blue-iceStrobe laser-glow-text tracking-wide mb-4">
@@ -83,7 +95,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
 
                   {/* House Rules Bulleted Ledger */}
                   <ul className="space-y-2.5 font-mono text-[10px] sm:text-[11px] tracking-wider text-ls-mono-pureWhite uppercase">
-                    {STRINGS.eventSection.flyerRules.map((rule, idx) => (
+                    {rulesList.map((rule, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-ls-blue-laserCyan shrink-0 mt-1.5" />
                         <span>{rule}</span>
@@ -92,13 +104,13 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
                   </ul>
                 </div>
 
-                {/* 92% Sold Out Wireframe Tag */}
+                {/* Status Wireframe Tag */}
                 <div className="pt-4 flex flex-wrap items-center justify-between gap-3 border-t border-ls-mono-hairline/40">
                   <span className="font-editorial text-xl sm:text-2xl font-black text-ls-mono-pureWhite tracking-wide whitespace-nowrap shrink-0">
-                    {STRINGS.tickets.capacityAlertBadge}
+                    {isTest ? STRINGS.test.tickets.capacityAlertBadge : STRINGS.tickets.badge}
                   </span>
                   <WireBadge variant="cyan" className="text-[9px] sm:text-[10px] tracking-[0.12em] whitespace-nowrap shrink-0">
-                    {STRINGS.meta.timestampStamp}
+                    {isTest ? STRINGS.meta.timestampStamp : 'TO BE ANNOUNCED'}
                   </WireBadge>
                 </div>
               </div>
@@ -108,14 +120,19 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
             <div className="p-5 border-t border-ls-mono-hairline/40 bg-transparent">
               <div className="flex items-center justify-between font-mono text-[11px] tracking-widest text-ls-mono-muted uppercase mb-2">
                 <span>{STRINGS.eventSection.coordinatesLabel}</span>
-                <span className="text-ls-mono-pureWhite">{event.city}</span>
+                <span className="text-ls-mono-pureWhite">
+                  {event.city}
+                </span>
               </div>
 
               <div className="flex items-center justify-between font-mono text-[11px] tracking-widest text-ls-mono-muted uppercase">
                 <span>{STRINGS.eventSection.venueLabel}</span>
-                <span className="text-ls-blue-laserCyan font-bold">{event.venue}</span>
+                <span className="text-ls-blue-laserCyan font-bold">
+                  {event.venue}
+                </span>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -126,7 +143,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-xs tracking-[0.25em] text-ls-blue-laserCyan uppercase">
-                  {STRINGS.eventSection.doorsOpenNotice}
+                  {isTest ? STRINGS.test.eventSection.doorsOpenNotice : STRINGS.eventSection.doorsOpenNotice}
                 </span>
               </div>
             </div>
@@ -150,7 +167,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
 
           {/* Ticket Matrix */}
           <div className="relative z-10">
-            <TicketMatrix eventId={event.id} tiers={event.ticketTiers} />
+            <TicketMatrix eventId={event.id} tiers={event.ticketTiers} isTest={isTest} />
           </div>
         </div>
       </div>
@@ -159,3 +176,4 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ event }) => {
 };
 
 export default EventsSection;
+

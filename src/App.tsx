@@ -12,17 +12,15 @@ import { GallerySection } from '@/components/gallery/GallerySection';
 import { ProtocolsSection } from '@/components/protocols/ProtocolsSection';
 import { Footer } from '@/components/layout/Footer';
 import { TeaserView } from '@/components/teaser/TeaserView';
-import { DEFAULT_EVENT } from '@/constants/event';
+import { DEFAULT_EVENT, TEST_EVENT } from '@/constants/event';
 
 /**
  * App Component
- * Orchestrates routing between the public teaser (/) and the full first-event platform (/test):
- * - Route "/": Public teaser interface with monolithic LØST SØULS, announcement, and waitlist.
- * - Route "/test": Full digital platform tailored exclusively for Chapter 01 (First Event in the Netherlands):
- *   - Only 1 single living blue shadow at middle bottom (organic morphing/shapeshifting).
- *   - Clean visual aesthetics without star sigils, pulsing dots, or horizontal laser scan beams.
- *   - No 3-chapters section and no audio ambience toggle.
- *   - Direct ticketing matrix, artist roster, merch capsules, gallery, and protocols.
+ * Orchestrates routing:
+ * - Route "/": Full Lost Souls digital platform (Chapter 01 debut gathering).
+ * - Route "/prod": Production platform alias.
+ * - Route "/test": Mock testing platform with active checkout machinery & test artist roster.
+ * - Route "/teaser": Standalone teaser void view.
  * Zero hardcoded color literals.
  *
  * @returns {JSX.Element} The rendered view based on location path.
@@ -39,16 +37,24 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Public teaser at root (/); full first-event site at /test
+  // Determine route mode
+  const isTeaserRoute =
+    pathname.startsWith('/teaser') ||
+    pathname.includes('/teaser') ||
+    (typeof window !== 'undefined' &&
+      (window.location.search.includes('teaser') || window.location.hash.includes('teaser')));
+
   const isTestRoute =
     pathname.startsWith('/test') ||
     pathname.includes('/test') ||
     (typeof window !== 'undefined' &&
       (window.location.search.includes('test') || window.location.hash.includes('test')));
 
-  if (!isTestRoute) {
+  if (isTeaserRoute) {
     return <TeaserView />;
   }
+
+  const activeEvent = isTestRoute ? TEST_EVENT : DEFAULT_EVENT;
 
   /**
    * Smoothly navigates the viewport down to the ticketing and event matrix section.
@@ -79,35 +85,37 @@ export const App: React.FC = () => {
       <LivingBlueGlow />
 
       {/* Header Navigation */}
-      <Navigation onTicketClick={handleTicketClick} />
+      <Navigation onTicketClick={handleTicketClick} isTest={isTestRoute} />
 
       <main className="relative z-10 flex flex-col">
         {/* Monolithic Teaser Hero Section for Chapter 01 */}
         <HeroSection
           onTicketClick={handleTicketClick}
           onLineupClick={handleLineupClick}
+          isTest={isTestRoute}
         />
 
         {/* Industrial Telemetry Ribbon */}
-        <TelemetryBar />
+        <TelemetryBar isTest={isTestRoute} />
 
         {/* Community Driven Raves & Emerging Artist Incubation Manifesto */}
         <AboutSection />
 
         {/* Event Dossier & Interactive Ticketing Matrix */}
-        <EventsSection event={DEFAULT_EVENT} />
+        <EventsSection event={activeEvent} isTest={isTestRoute} />
 
         {/* Industrial Artist Roster Ledger */}
         <LineupLedger
-          artists={DEFAULT_EVENT.artists}
+          artists={activeEvent.artists}
           onTicketClick={handleTicketClick}
+          isTest={isTestRoute}
         />
 
         {/* Limited Apparel & Merch Capsule */}
-        <SmallRuns />
+        <SmallRuns isTest={isTestRoute} />
 
         {/* Direct-Flash Warehouse Photography Gallery */}
-        <GallerySection />
+        <GallerySection isTest={isTestRoute} />
 
         {/* Mandatory House Protocols & Etiquette */}
         <ProtocolsSection />
@@ -120,3 +128,4 @@ export const App: React.FC = () => {
 };
 
 export default App;
+

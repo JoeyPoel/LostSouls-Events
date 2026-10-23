@@ -1,12 +1,11 @@
 import React from 'react';
 import { STRINGS } from '@/constants/strings';
-import { WireBadge } from '@/components/common/WireBadge';
 
 /**
  * AboutSection Component
  * Dedicated community manifesto detailing the core Lost Souls philosophy:
  * - Counter-movement against commercial raves and celebrity headliner inflation
- * - Sacred dancefloor sanctuary: no filming for socials, dancing to detach from life
+ * - Sacred dancefloor sanctuary: no filming for the socials, dancing to detach from life
  * - Rising talent platform: real debut proving grounds for emerging, fearless artists
  * Zero hardcoded color literals.
  *
@@ -41,13 +40,6 @@ export const AboutSection: React.FC = () => {
         {/* Left: The Raw Problem Statement (Counter-Commercial) */}
         <div className="lg:col-span-6 p-7 sm:p-10 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none shadow-laser-subtle backdrop-blur-sm flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/[0.05]">
-              <span className="font-mono text-xs tracking-[0.25em] text-ls-mono-muted uppercase">
-                THE REBELLION
-              </span>
-              <WireBadge variant="cyan">RAW UNDERGROUND</WireBadge>
-            </div>
-            
             <p className="font-editorial text-2xl sm:text-3xl font-black uppercase text-ls-mono-pureWhite leading-snug mb-6">
               {STRINGS.about.lead}
             </p>
@@ -68,13 +60,6 @@ export const AboutSection: React.FC = () => {
         {/* Right: Rising Talent & Next Generation Platform */}
         <div className="lg:col-span-6 p-7 sm:p-10 bg-ls-void-abyss/60 border border-ls-mono-hairline/60 rounded-none shadow-laser-subtle backdrop-blur-sm flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/[0.05]">
-              <span className="font-mono text-xs tracking-[0.25em] text-ls-mono-muted uppercase">
-                ARTIST PLATFORM
-              </span>
-              <WireBadge variant="cyan">EMERGING DEBUTS</WireBadge>
-            </div>
-
             <h3 className="font-editorial text-2xl sm:text-3xl font-black uppercase text-ls-blue-iceStrobe laser-glow-text mb-6">
               {STRINGS.about.launchpadTitle}
             </h3>
@@ -86,7 +71,7 @@ export const AboutSection: React.FC = () => {
 
           <div className="mt-8 pt-6 border-t border-white/[0.05] flex items-center justify-between">
             <span className="font-mono text-[10px] tracking-widest text-ls-mono-muted uppercase">
-              RISING TALENT • 2026 DEBUT ROSTER
+              CHAPTER 01
             </span>
             <span className="font-mono text-xs text-ls-blue-laserCyan font-bold tracking-widest">
               140–165 BPM
@@ -117,12 +102,6 @@ export const AboutSection: React.FC = () => {
               <p className="text-xs sm:text-sm text-ls-mono-silver/90 leading-relaxed font-sans">
                 {pillar.description}
               </p>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-white/[0.04]">
-              <span className="font-mono text-[9px] tracking-widest text-ls-mono-muted uppercase group-hover:text-ls-mono-silver transition-colors">
-                LOST SOULS DOCTRINE
-              </span>
             </div>
           </div>
         ))}

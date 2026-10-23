@@ -180,34 +180,54 @@ function localApiPlugin(): Plugin {
   };
 }
 
-// Plugin to guarantee that /test and /test.html exist as physical files in dist for Vercel/production
-function testRouteStaticPlugin(): Plugin {
+// Plugin to guarantee that /test and /prod exist as physical files in dist for static hosts
+function staticRoutesPlugin(): Plugin {
   return {
-    name: 'test-route-static-generator',
+    name: 'static-routes-generator',
     closeBundle() {
       try {
         const distDir = path.resolve(process.cwd(), 'dist');
         const srcIndex = path.join(distDir, 'index.html');
         if (fs.existsSync(srcIndex)) {
+          // Generate /test
           const testDir = path.join(distDir, 'test');
           if (!fs.existsSync(testDir)) {
             fs.mkdirSync(testDir, { recursive: true });
           }
           fs.copyFileSync(srcIndex, path.join(testDir, 'index.html'));
           fs.copyFileSync(srcIndex, path.join(distDir, 'test.html'));
-          console.log('[test-route-static-generator] Generated dist/test/index.html and dist/test.html');
+
+          // Generate /prod
+          const prodDir = path.join(distDir, 'prod');
+          if (!fs.existsSync(prodDir)) {
+            fs.mkdirSync(prodDir, { recursive: true });
+          }
+          fs.copyFileSync(srcIndex, path.join(prodDir, 'index.html'));
+          fs.copyFileSync(srcIndex, path.join(distDir, 'prod.html'));
+
+          // Generate /teaser
+          const teaserDir = path.join(distDir, 'teaser');
+          if (!fs.existsSync(teaserDir)) {
+            fs.mkdirSync(teaserDir, { recursive: true });
+          }
+          fs.copyFileSync(srcIndex, path.join(teaserDir, 'index.html'));
+          fs.copyFileSync(srcIndex, path.join(distDir, 'teaser.html'));
+
+          console.log('[static-routes-generator] Generated dist/test, dist/prod, and dist/teaser static routes');
         }
       } catch (err) {
-        console.error('[test-route-static-generator] Error generating test static route:', err);
+        console.error('[static-routes-generator] Error generating static routes:', err);
       }
     },
   };
 }
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), localApiPlugin(), testRouteStaticPlugin()],
+  plugins: [react(), localApiPlugin(), staticRoutesPlugin()],
   resolve: {
+
     alias: {
       '@': path.resolve(__dirname, './src'),
     },

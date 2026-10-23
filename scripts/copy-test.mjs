@@ -13,13 +13,36 @@ try {
   const testHtml = path.join(distDir, 'test.html');
 
   if (fs.existsSync(indexFile)) {
+    // /test static route
     if (!fs.existsSync(testDir)) {
       fs.mkdirSync(testDir, { recursive: true });
     }
     fs.copyFileSync(indexFile, testIndex);
     fs.copyFileSync(indexFile, testHtml);
-    console.log('[postbuild] Created dist/test/index.html and dist/test.html successfully.');
+
+    // /prod static route
+    const prodDir = path.join(distDir, 'prod');
+    const prodIndex = path.join(prodDir, 'index.html');
+    const prodHtml = path.join(distDir, 'prod.html');
+    if (!fs.existsSync(prodDir)) {
+      fs.mkdirSync(prodDir, { recursive: true });
+    }
+    fs.copyFileSync(indexFile, prodIndex);
+    fs.copyFileSync(indexFile, prodHtml);
+
+    // /teaser static route
+    const teaserDir = path.join(distDir, 'teaser');
+    const teaserIndex = path.join(teaserDir, 'index.html');
+    const teaserHtml = path.join(distDir, 'teaser.html');
+    if (!fs.existsSync(teaserDir)) {
+      fs.mkdirSync(teaserDir, { recursive: true });
+    }
+    fs.copyFileSync(indexFile, teaserIndex);
+    fs.copyFileSync(indexFile, teaserHtml);
+
+    console.log('[postbuild] Created dist/test, dist/prod, and dist/teaser static routes successfully.');
   }
 } catch (err) {
-  console.error('[postbuild] Failed to generate static test route:', err);
+  console.error('[postbuild] Failed to generate static routes:', err);
 }
+

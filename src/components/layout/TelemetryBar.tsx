@@ -7,7 +7,19 @@ import { STRINGS } from '@/constants/strings';
  * Modeled directly after the reference's technical status ribbon.
  * Zero hardcoded color literals.
  */
-export const TelemetryBar: React.FC = () => {
+export interface TelemetryBarProps {
+  isTest?: boolean;
+}
+
+/**
+ * TelemetryBar Component
+ * High-contrast event metadata ledger displaying date, time, venue, and age restriction.
+ * Modeled directly after the reference's technical status ribbon.
+ * Zero hardcoded color literals.
+ */
+export const TelemetryBar: React.FC<TelemetryBarProps> = ({ isTest = false }) => {
+  const ribbon = isTest ? STRINGS.test.telemetryRibbon : STRINGS.telemetryRibbon;
+
   return (
     <aside
       aria-label="Event telemetry"
@@ -19,7 +31,7 @@ export const TelemetryBar: React.FC = () => {
             {STRINGS.telemetryRibbon.dateLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-mono-pureWhite tracking-widest">
-            {STRINGS.telemetryRibbon.dateValue}
+            {ribbon.dateValue}
           </span>
         </div>
 
@@ -28,7 +40,7 @@ export const TelemetryBar: React.FC = () => {
             {STRINGS.telemetryRibbon.timeLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-mono-pureWhite tracking-widest">
-            {STRINGS.telemetryRibbon.timeValue}
+            {ribbon.timeValue}
           </span>
         </div>
 
@@ -37,7 +49,7 @@ export const TelemetryBar: React.FC = () => {
             {STRINGS.telemetryRibbon.venueLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-blue-laserCyan tracking-widest">
-            {STRINGS.telemetryRibbon.venueValue}
+            {ribbon.venueValue}
           </span>
         </div>
 
@@ -46,7 +58,7 @@ export const TelemetryBar: React.FC = () => {
             {STRINGS.telemetryRibbon.accessLabel}
           </span>
           <span className="font-bold text-sm sm:text-base text-ls-mono-pureWhite tracking-widest">
-            {STRINGS.telemetryRibbon.accessValue}
+            {ribbon.accessValue}
           </span>
         </div>
       </div>
@@ -55,3 +67,4 @@ export const TelemetryBar: React.FC = () => {
 };
 
 export default TelemetryBar;
+

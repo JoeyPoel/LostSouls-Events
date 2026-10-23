@@ -4,6 +4,7 @@ import { GlowButton } from '@/components/common/GlowButton';
 
 export interface NavigationProps {
   onTicketClick: () => void;
+  isTest?: boolean;
 }
 
 /**
@@ -12,13 +13,14 @@ export interface NavigationProps {
  * - Brand logo: "LØST SØULS" in editorial serif with laser glow
  * - Location telemetry: NETHERLANDS
  * - Navigation links: Home, Events, Lineup, Merch, Info, Community
- * - Radiant Ticket CTA
+ * - Radiant Ticket / Coming Soon CTA
  * Zero hardcoded color literals.
  *
  * @param {NavigationProps} props - Component properties for ticket navigation.
  * @returns {JSX.Element} Rendered header navigation bar.
  */
-export const Navigation: React.FC<NavigationProps> = ({ onTicketClick }) => {
+export const Navigation: React.FC<NavigationProps> = ({ onTicketClick, isTest = false }) => {
+
   return (
     <header className="sticky top-0 z-40 w-full bg-ls-void-pure/80 backdrop-blur-md transition-all select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
@@ -107,9 +109,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onTicketClick }) => {
             id="nav-ticket-cta"
             className="px-5 py-2.5 text-xs font-bold uppercase tracking-widest"
           >
-            {STRINGS.navigation.ticketCta}
+            {isTest ? STRINGS.navigation.ticketCta : 'COMING SOON'}
           </GlowButton>
         </div>
+
       </div>
     </header>
   );
