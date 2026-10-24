@@ -63,3 +63,88 @@ test('Prisma Resilience: Module loads safely when DATABASE_URL is unset', async 
     process.env.DATABASE_URL = originalDbUrl;
   }
 });
+
+test('Async Resilience: withTimeout helper enforces deadlines', async () => {
+  const { withTimeout } = await import('../src/lib/async.ts');
+
+  // Fast resolving promise
+  const fastPromise = new Promise((resolve) => setTimeout(() => resolve('speed'), 20));
+  const result = await withTimeout(fastPromise, 100, 'Fast task');
+  assert.equal(result, 'speed');
+
+  // Hanging promise exceeding deadline
+  const slowPromise = new Promise((resolve) => setTimeout(() => resolve('late'), 150));
+  await assert.rejects(
+    async () => {
+      await withTimeout(slowPromise, 30, 'Slow task');
+    },
+    (err) => {
+      assert.ok(err instanceof Error);
+      assert.ok(err.message.includes('timed out after 30ms'));
+      return true;
+    }
+  );
+});
+
+test('Waitlist API Fail-Safe Invariant: Handler returns 201 success even if database fails or times out', async () => {
+  const waitlistModule = await import('../api/waitlist/index.ts');
+  const handler = waitlistModule.default;
+
+  // Case 1: When database fails / is invalid
+  let statusCode = 0;
+  let responseData = null;
+
+  const mockReq = {
+    method: 'POST',
+    body: { email: 'failover-test@lostsouls.com', source: 'unit_test' },
+    on: () => {},
+  };
+
+  const createMockRes = () => ({
+    statusCode: 200,
+    setHeader: () => {},
+    status(code) {
+      statusCode = code;
+      return this;
+    },
+    json(data) {
+      responseData = data;
+      return this;
+    },
+    end(data) {
+      if (data && typeof data === 'string') {
+        try {
+          responseData = JSON.parse(data);
+        } catch {
+          responseData = data;
+        }
+      }
+      return this;
+    },
+  });
+
+  // Execute with active DATABASE_URL (which triggers DB error or timeout)
+  await handler(mockReq, createMockRes());
+
+  assert.equal(statusCode, 201, 'HTTP response should be 201 Created');
+  assert.ok(responseData, 'Response data should be defined');
+  assert.equal(responseData.success, true, 'Handler should return success: true');
+  assert.equal(responseData.email, 'failover-test@lostsouls.com');
+  assert.ok(['persisted', 'failed', 'timeout'].includes(responseData.dbStatus));
+
+  // Case 2: When DATABASE_URL is unset
+  const originalDbUrl = process.env.DATABASE_URL;
+  try {
+    delete process.env.DATABASE_URL;
+    statusCode = 0;
+    responseData = null;
+    await handler(mockReq, createMockRes());
+
+    assert.equal(statusCode, 201);
+    assert.equal(responseData.success, true);
+    assert.equal(responseData.dbStatus, 'skipped');
+  } finally {
+    process.env.DATABASE_URL = originalDbUrl;
+  }
+});
+
